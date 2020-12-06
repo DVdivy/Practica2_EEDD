@@ -1,7 +1,26 @@
 #include "Gestion.h"
 #include <windows.h>
 #include <time.h>
+Pedido* leer_pedido() ///recibe los datos del usuario y los almacena.
+{
+    string input;
+    string parametros_pedido[6];
+    cout << "Introduce los datos del pedido" << "\nFormato(Descripcion del articulo//Nombre del cliente//Direccion//Tipo de cliente//Numero de tarjeta//Tiempo): ";
+    cin.ignore();
+    getline(cin,input);
 
+    const char* cadena = input.c_str();
+    ///Devuelve el primer token
+    char* next_token = NULL;
+    char* token = strtok_s((char*)cadena, "//", &next_token);
+
+    ///Va cogiendo los tokens
+    for (int i = 0; i < 6; i++) {
+        parametros_pedido[i] = token;
+        token = strtok_s(NULL, "//", &next_token);
+    }
+    return new Pedido(parametros_pedido[0], parametros_pedido[1], parametros_pedido[2], parametros_pedido[3], parametros_pedido[4], stoi(parametros_pedido[5]));
+}
 int main() {
     srand(time(NULL));//Para que los tiempos aleatorios de los pedidos sean diferentes cada vez que se ejecuta el programa.
     string eleccion;
@@ -31,7 +50,7 @@ int main() {
             cout << "determine cuantos objetos va a introducir (un entero entre 10 y 20)?" << endl;
             cin >> total_vueltas;
             for(int vueltas_dadas=0 ; vueltas_dadas<total_vueltas ; vueltas_dadas++){
-                gestion->encolar(gestion->leer_pedido());
+                gestion->encolar(leer_pedido());
             }
             break;
         default:

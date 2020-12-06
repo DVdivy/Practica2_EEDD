@@ -44,67 +44,67 @@ Pedido::Pedido(string _descripcion_articulo, string _nombre_cliente, string _dir
 }
 
 ///Comprobaciones de que los datos siguen ciertos criterios
-bool Pedido::comprobar_nombre(string _nombre_cliente)
+bool Pedido::comprobar_nombre()
 {
-    if (_nombre_cliente.size()==0)
+    if (nombre_cliente.size()==0)
         return false;
-    for (int i=0 ; i < _nombre_cliente.size() ; i++){
-        if (!((_nombre_cliente[i]>=65 && _nombre_cliente[i] <=90) || (_nombre_cliente[i]>=97 && _nombre_cliente[i]<=122) || _nombre_cliente[i]==' '))
+    for (int i=0 ; i < nombre_cliente.size() ; i++){
+        if (!((nombre_cliente[i]>=65 && nombre_cliente[i] <=90) || (nombre_cliente[i]>=97 && nombre_cliente[i]<=122) || nombre_cliente[i]==' '))
             return false;
     }
     return true;
 }
 
-bool Pedido::comprobar_direccion(string _direccion)
+bool Pedido::comprobar_direccion()
 {
-    if (_direccion.size()==0)
+    if (direccion.size()==0)
         return false;
-    if (!(_direccion[_direccion.size()-1] >='0' && _direccion[_direccion.size()-1] <='9'))
+    if (!(direccion[direccion.size()-1] >='0' && direccion[direccion.size()-1] <='9'))
         return false;
-    for (int i=0; i<_direccion.size(); i++)
-        if (!((_direccion[i]>=65 && _direccion[i] <=90) || (_direccion[i]>=97 && _direccion[i]<=122) || _direccion[i]==' ' || (_direccion[i]>='0' && _direccion[i]<='9')))
+    for (int i=0; i<direccion.size(); i++)
+        if (!((direccion[i]>=65 && direccion[i] <=90) || (direccion[i]>=97 && direccion[i]<=122) || direccion[i]==' ' || (direccion[i]>='0' && direccion[i]<='9')))
             return false;
     return true;
 }
 
-bool Gestion::comprobar_numero_tarjeta(string _numero_tarjeta)
+bool Pedido::comprobar_numero_tarjeta()
 {
-    if (_numero_tarjeta.size()!=12)
+    if (numero_tarjeta.size()!=12)
         return false;
 
-    for (int i=0 ; i < _numero_tarjeta.size() ; i++){
-        if (!(_numero_tarjeta[i]>=48 && _numero_tarjeta[i] <=57))
+    for (int i=0 ; i < numero_tarjeta.size() ; i++){
+        if (!(numero_tarjeta[i]>=48 && numero_tarjeta[i] <=57))
             return false;
     }
     return true;
 }
 
-bool Pedido::comprobar_tiempo(int _tiempo)
+bool Pedido::comprobar_tiempo()
 {
-    if (_tiempo>=1 && _tiempo<=10)
+    if (tiempo>=1 && tiempo<=10)
             return true;
     return false;
 }
 ///se comprueba que el pedido cumple TODOS los criterios
-bool Gestion::comprobar_pedido(Pedido* p)
+bool Pedido::comprobar_pedido()
 {
-    if ((comprobar_nombre(p->get_nombre_cliente()) && comprobar_direccion(p->get_direccion()) && comprobar_numero_tarjeta(p->get_numero_tarjeta()) && comprobar_tiempo(p->get_tiempo())))
+    if ((comprobar_nombre() && comprobar_direccion() && comprobar_numero_tarjeta() && comprobar_tiempo()))
         return true;
     return false;
 }
 
-void Pedido::arreglar_pedido(Pedido* p) ///pide cambiar datos del pedido hasta que no haya datos erroneos
+void Pedido::arreglar_pedido() ///pide cambiar datos del pedido hasta que no haya datos erroneos
 {
     string eleccion;
     bool correcto=false;
-    while (!comprobar_pedido(p)){
+    while (!comprobar_pedido()){
         cout << "Estos son los datos del pedido erroneo, modifiquelos para que sea valido: " << endl;
-        cout << "1 Descripcion: " << p->get_descripcion_articulo() << endl;
-        cout << "2 Nombre: " << p->get_nombre_cliente() << endl;
-        cout << "3 Direccion: " << p->get_direccion() << endl;
-        cout << "4 Tipo de cliente: " << p->get_tipo_cliente_string() << endl;
-        cout << "5 Numero de tarjeta: " << p->get_numero_tarjeta() << endl;
-        cout << "6 Tiempo: " << p->get_tiempo() << endl;
+        cout << "1 Descripcion: " << descripcion_articulo << endl;
+        cout << "2 Nombre: " << nombre_cliente << endl;
+        cout << "3 Direccion: " << direccion << endl;
+        cout << "4 Tipo de cliente: " << get_tipo_cliente_string() << endl;
+        cout << "5 Numero de tarjeta: " << numero_tarjeta << endl;
+        cout << "6 Tiempo: " << tiempo << endl;
         cout << "Elija el numero del campo que desea cambiar (elija 0 si no desea cambiar nada mas): " << endl;
         while (!correcto){
             cin >> eleccion;
@@ -123,47 +123,60 @@ void Pedido::arreglar_pedido(Pedido* p) ///pide cambiar datos del pedido hasta q
             correcto=false;
             break;
         case 1:
-            {string descripcion;
-            cout << "Introduzca la nueva descripcion (no hay restricciones): " << endl;
-            cin >> descripcion;
-            p->set_descripcion_articulo(descripcion);}
-            correcto=false;
-            break;
+            {
+                string _descripcion;
+                cout << "Introduzca la nueva descripcion (no hay restricciones): " << endl;
+                cin >> _descripcion;
+                set_descripcion_articulo(_descripcion);
+                correcto=false;
+                break;
+            }
         case 2:
-            {string nombre;
-            cout << "Introduzca el nuevo nombre (solo letras y espacios): " << endl;
-            cin >> nombre;
-            p->set_nombre_cliente(nombre);}
-            correcto=false;
-            break;
+            {
+                string _nombre;
+                cout << "Introduzca el nuevo nombre (solo letras y espacios): " << endl;
+                cin >> _nombre;
+                set_nombre_cliente(_nombre);
+                correcto=false;
+                break;
+            }
         case 3:
-            {string direccion;
-            cout << "Introduzca la nueva direccion (Solo puede contener letras numeros y espacios): " << endl;
-            cin >> direccion;
-            p->set_direccion(direccion);}
-            correcto=false;
-            break;
+            {
+                string _direccion;
+                cout << "Introduzca la nueva direccion (Solo puede contener letras numeros y espacios): " << endl;
+                cin >> _direccion;
+                set_direccion(_direccion);
+                correcto=false;
+                break;
+            }
         case 4:
-            {string tipo;
-            cout << "Introduzca el nuevo tipo de cliente (no hay restricciones): " << endl; //si pone algo sin sentido se considera NR
-            cin >> tipo;
-            p->set_tipo_cliente(tipo);}
-            correcto=false;
-            break;
+            {
+                string _tipo;
+                cout << "Introduzca el nuevo tipo de cliente (no hay restricciones): " << endl; //si pone algo sin sentido se considera NR
+                cin >> _tipo;
+                set_tipo_cliente(_tipo);
+                correcto=false;
+                break;
+            }
         case 5:
-            {string numero;
-            cout << "Introduzca el nuevo numero de tarjeta (12 numeros): " << endl;
-            cin >> numero;
-            p->set_numero_tarjeta(numero);}
-            correcto=false;
-            break;
+            {
+                string numero;
+                cout << "Introduzca el nuevo numero de tarjeta (12 numeros): " << endl;
+                cin >> numero;
+                set_numero_tarjeta(numero);
+                correcto=false;
+                break;
+            }
         case 6:
-            {int tiempo;
-            cout << "Introduzca el nuevo tiempo (numero del 1 al 10, incluidos): " << endl;
-            cin >> tiempo;
-            p->set_tiempo(tiempo);}
-            correcto=false;
-            break;
+            {
+                int tiempo;
+                cout << "Introduzca el nuevo tiempo (numero del 1 al 10, incluidos): " << endl;
+                cin >> tiempo;
+                set_tiempo(tiempo);
+                correcto=false;
+                break;
+            }
+
         default:
             cout << "El numero introducido no es valido." << endl;
             correcto=false;
@@ -246,36 +259,6 @@ void Pedido::set_numero_tarjeta(string _numero_tarjeta)
 void Pedido::set_tiempo(int _tiempo)
 {
     tiempo = _tiempo;
-}
-
-
-Pedido* Pedido::leer_pedido() ///recibe los datos del usuario y los almacena.
-{
-    string input;
-    string parametros_pedido[6];
-    cout << "Introduce los datos del pedido" << "\nFormato(Descripcion del articulo//Nombre del cliente//Direccion//Tipo de cliente//Numero de tarjeta//Tiempo): ";
-    cin.ignore();
-    getline(cin,input);
-
-    const char* cadena = input.c_str();
-    ///Devuelve el primer token
-    char* next_token = NULL;
-    char* token = strtok_s((char*)cadena, "//", &next_token);
-
-    ///Va cogiendo los tokens
-    for (int i = 0; i < 6; i++) {
-        parametros_pedido[i] = token;
-        token = strtok_s(NULL, "//", &next_token);
-    }
-    return new Pedido(parametros_pedido[0], parametros_pedido[1], parametros_pedido[2], parametros_pedido[3], parametros_pedido[4], stoi(parametros_pedido[5]));
-}
-
-void Pedido::enviar_pedido() ///eliminar el primer pedido de l_para_enviar y añade un nuevo pedido a la lista
-{
-    l_para_enviar->resto();
-    if (!p_erroneos->es_vacia() || !c_no_registrados->es_vacia() || !c_registrados->es_vacia()){
-        enlistar();
-    }
 }
 
 string Pedido::mostrar_pedido()

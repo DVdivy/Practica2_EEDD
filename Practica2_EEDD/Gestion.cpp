@@ -56,7 +56,7 @@ void Gestion::enlistar_inicial() ///mete los primeros 4 pedidos (en caso de habe
 {
     int registrados=0;
     while (registrados !=3 && !c_registrados->es_vacia()){
-        if (comprobar_pedido(c_registrados->prim())){
+        if (c_registrados->prim()->comprobar_pedido()){
             l_para_enviar->add_der(c_registrados->prim());
             registrados++;
         }
@@ -69,7 +69,7 @@ void Gestion::enlistar_inicial() ///mete los primeros 4 pedidos (en caso de habe
 
     registrados=0;
     while (registrados!=1 && !c_no_registrados->es_vacia()){
-        if (comprobar_pedido(c_no_registrados->prim())){
+        if (c_no_registrados->prim()->comprobar_pedido()){
             l_para_enviar->add_der(c_no_registrados->prim());
             registrados++;
         }
@@ -94,7 +94,7 @@ void Gestion::enlistar() ///añade los pedidos segun los criterios establecidos p
                     contador++;
                 else{
                     if (p_erroneos->cima()->get_tipo_cliente()!= NR){
-                        arreglar_pedido(p_erroneos->cima());
+                        p_erroneos->cima()->arreglar_pedido();
                         l_para_enviar->add_der(p_erroneos->cima());
                         p_erroneos->desapilar();
                         contador=1;
@@ -108,7 +108,7 @@ void Gestion::enlistar() ///añade los pedidos segun los criterios establecidos p
                 if (c_no_registrados->es_vacia())
                     contador++;
                 else{
-                    if (comprobar_pedido(c_no_registrados->prim())){
+                    if (c_no_registrados->prim()->comprobar_pedido()){
                         l_para_enviar->add_der(c_no_registrados->prim());
                         contador=1;
                         enlistado=true;
@@ -120,7 +120,7 @@ void Gestion::enlistar() ///añade los pedidos segun los criterios establecidos p
                 break;
             case 6:
                 if (!p_erroneos->es_vacia()){
-                    arreglar_pedido(p_erroneos->cima());
+                    p_erroneos->cima()->arreglar_pedido();
                     l_para_enviar->add_der(p_erroneos->cima());
                     p_erroneos->desapilar();
                     enlistado=true;
@@ -131,7 +131,7 @@ void Gestion::enlistar() ///añade los pedidos segun los criterios establecidos p
                 if (c_registrados->es_vacia())
                     contador=4;
                 else{
-                    if (comprobar_pedido(c_registrados->prim())){
+                    if (c_registrados->prim()->comprobar_pedido()){
                         l_para_enviar->add_der(c_registrados->prim());
                         contador++;
                         enlistado=true;
@@ -142,6 +142,14 @@ void Gestion::enlistar() ///añade los pedidos segun los criterios establecidos p
                 }
                 break;
         }
+    }
+}
+
+void Gestion::enviar_pedido() ///eliminar el primer pedido de l_para_enviar y añade un nuevo pedido a la lista
+{
+    l_para_enviar->resto();
+    if (!p_erroneos->es_vacia() || !c_no_registrados->es_vacia() || !c_registrados->es_vacia()){
+        enlistar();
     }
 }
 

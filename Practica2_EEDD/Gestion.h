@@ -19,6 +19,8 @@ public:
 	void encolar(Pedido* p);
 	void enlistar_inicial();
 	void enlistar();
+	void enviar_pedido();
+	void mostrar_datos();
 	void simula_tiempo();
 
 

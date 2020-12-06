@@ -25,14 +25,12 @@ public:
 	Pedido(string descripcion_articulo, string nombre_cliente, string direccion,
 		string tipo_cliente, string numero_tarjeta, int tiempo); //Constructor añadiendo ademas el tiempo
 
-    void arreglar_pedido(Pedido* p);
-    bool comprobar_nombre(string _nombre_cliente);
-	bool comprobar_direccion(string _direccion);
-	bool comprobar_numero_tarjeta(string _numero_tarjeta);
-	bool comprobar_tiempo(int _tiempo);
-	bool comprobar_pedido(Pedido* p);
-    void enviar_pedido();
-	void mostrar_datos();
+    void arreglar_pedido();
+    bool comprobar_nombre();
+	bool comprobar_direccion();
+	bool comprobar_numero_tarjeta();
+	bool comprobar_tiempo();
+	bool comprobar_pedido();
 	Pedido* leer_pedido();
 
 	///GETTERS
