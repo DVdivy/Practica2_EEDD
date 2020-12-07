@@ -7,7 +7,7 @@ public:
 	Pila();
 	~Pila();
 	void apilar(Pedido* p);
-	void ordenar_pila();
+	void apilar_prioridad(Pedido* p);
 	void desapilar();
 	Pedido* cima();
 	bool es_vacia();

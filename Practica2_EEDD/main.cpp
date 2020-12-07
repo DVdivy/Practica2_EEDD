@@ -25,7 +25,7 @@ int main() {
     srand(time(NULL));//Para que los tiempos aleatorios de los pedidos sean diferentes cada vez que se ejecuta el programa.
     string eleccion;
     bool correcto=false;
-
+    bool salir;
     Gestion* gestion = new Gestion();
 
     cout << "Elija como desea hacer la simulacion." << endl;
@@ -33,11 +33,12 @@ int main() {
     cout << "Introduzca cualquier otro numero si desea utilizar 12 productos aleatorios." << endl;
     while (!correcto){
         cin >> eleccion;
-        for (int i=0 ; i<eleccion.size();i++){
+        salir = false;
+        for (int i=0 ; i<eleccion.size() && !salir; i++){
             if (!(eleccion[i]>='0' && eleccion[i] <='9')){
                 cout << "Eleccion no valida, introduzca la eleccion de nuevo: " << endl;
-                correcto=false;
-                break;
+                correcto = false;
+                salir = true;
             }
             else
                 correcto=true;

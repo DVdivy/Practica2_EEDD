@@ -21,27 +21,20 @@ void Pila::apilar(Pedido* p)
 	primero = aux;
 }
 
-void Pila::ordenar_pila()
+void Pila::apilar_prioridad(Pedido* p)
 {
-    Pila* registrados= new Pila();
-    Pila* no_registrados= new Pila();
-    while (!es_vacia()){
-        if (cima()->get_tipo_cliente()==NR){
-            no_registrados->apilar(cima());
-            desapilar();
+    Nodo* aux = new Nodo();
+    Nodo* puntero = new Nodo();
+    if (es_vacia() || p->get_tipo_cliente() != NR || cima()->get_tipo_cliente() == NR)
+        apilar(p);
+    else {
+        aux->sig = primero;
+        while (aux->sig != nullptr && aux->sig->pedido->get_tipo_cliente() != NR) {
+            aux = aux->sig;
         }
-        else{
-            registrados->apilar(cima());
-            desapilar();
-        }
-    }
-    while (!no_registrados->es_vacia()){
-        apilar(no_registrados->cima());
-        no_registrados->desapilar();
-    }
-    while (!registrados->es_vacia()){
-        apilar(registrados->cima());
-        registrados->desapilar();
+        puntero->pedido = p;
+        puntero->sig = aux->sig;
+        aux->sig = puntero;
     }
 }
 

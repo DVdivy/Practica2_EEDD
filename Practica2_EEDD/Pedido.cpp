@@ -97,6 +97,7 @@ void Pedido::arreglar_pedido() ///pide cambiar datos del pedido hasta que no hay
 {
     string eleccion;
     bool correcto=false;
+    bool salir;
     while (!comprobar_pedido()){
         cout << "Estos son los datos del pedido erroneo, modifiquelos para que sea valido: " << endl;
         cout << "1 Descripcion: " << descripcion_articulo << endl;
@@ -108,11 +109,12 @@ void Pedido::arreglar_pedido() ///pide cambiar datos del pedido hasta que no hay
         cout << "Elija el numero del campo que desea cambiar (elija 0 si no desea cambiar nada mas): " << endl;
         while (!correcto){
             cin >> eleccion;
-            for (int i=0 ; i<eleccion.size();i++){
+            salir = false;
+            for (int i=0 ; i<eleccion.size() && !salir; i++){
                 if (!(eleccion[i]>='0' && eleccion[i] <='9')){
                     cout << "Eleccion no valida, introduzca la eleccion de nuevo: " << endl;
-                    correcto=false;
-                    break;
+                    correcto = false;
+                    salir = true;
                 }
                 else
                     correcto=true;

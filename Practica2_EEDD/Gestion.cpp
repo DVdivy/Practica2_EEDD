@@ -61,8 +61,7 @@ void Gestion::enlistar_inicial() ///mete los primeros 4 pedidos (en caso de habe
             registrados++;
         }
         else{
-            p_erroneos->apilar(c_registrados->prim());
-            p_erroneos->ordenar_pila();
+            p_erroneos->apilar_prioridad(c_registrados->prim());
         }
         c_registrados->desencolar();
     }
@@ -74,8 +73,7 @@ void Gestion::enlistar_inicial() ///mete los primeros 4 pedidos (en caso de habe
             registrados++;
         }
         else{
-            p_erroneos->apilar(c_no_registrados->prim());
-            p_erroneos->ordenar_pila();
+            p_erroneos->apilar_prioridad(c_no_registrados->prim());
         }
         c_no_registrados->desencolar();
     }
@@ -84,10 +82,7 @@ void Gestion::enlistar_inicial() ///mete los primeros 4 pedidos (en caso de habe
 void Gestion::enlistar() ///añade los pedidos segun los criterios establecidos por la practica
 {
     bool enlistado=false;
-    while (!enlistado){
-        if (p_erroneos->es_vacia() && c_no_registrados->es_vacia() && c_registrados->es_vacia()){
-            break;
-        }
+    while (!enlistado && !(p_erroneos->es_vacia() && c_no_registrados->es_vacia() && c_registrados->es_vacia())){
         switch (contador){
             case 4:
                 if (p_erroneos->es_vacia())

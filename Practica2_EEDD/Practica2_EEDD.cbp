@@ -32,7 +32,19 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="main.cpp" />
+		<Unit filename="Cola.cpp" />
+		<Unit filename="Cola.h" />
+		<Unit filename="Gestion.cpp" />
+		<Unit filename="Gestion.h" />
+		<Unit filename="Lista.cpp" />
+		<Unit filename="Lista.h" />
+		<Unit filename="Main.cpp" />
+		<Unit filename="Nodo.cpp" />
+		<Unit filename="Nodo.h" />
+		<Unit filename="Pedido.cpp" />
+		<Unit filename="Pedido.h" />
+		<Unit filename="Pila.cpp" />
+		<Unit filename="Pila.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
