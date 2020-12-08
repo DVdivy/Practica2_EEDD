@@ -70,6 +70,7 @@ void Lista::add_prioridad(Pedido* p)
         puntero->pedido = p;
         puntero->sig = aux->sig;
         aux->sig = puntero;
+        longitud++;
     }
 }
 

@@ -48,7 +48,7 @@ int main() {
     switch (stoi(eleccion)){
         case 1:
             int total_vueltas;
-            cout << "determine cuantos objetos va a introducir (un entero entre 10 y 20)?" << endl;
+            cout << "determine cuantos objetos va a introducir (un entero entre 10 y 20)" << endl;
             cin >> total_vueltas;
             for(int vueltas_dadas=0 ; vueltas_dadas<total_vueltas ; vueltas_dadas++){
                 gestion->encolar(leer_pedido());
@@ -56,14 +56,14 @@ int main() {
             break;
         default:
             ///se instancias varios pedidos
-            Pedido* p1 = new Pedido ("Martillo",    "Andres",   "Jose Zorrilla 7",  Tipo_cliente::NVIP,              "780044545667");
-            Pedido* p2 = new Pedido ("Libro",       "Carlos",   "Perez Galdos 12",  Tipo_cliente::VIP,             "780013456674");
+            Pedido* p1 = new Pedido ("Martillo",    "Andres",   "Jose Zorrilla 7",  "NVIP",              "780044545667", 2);
+            Pedido* p2 = new Pedido ("Libro",       "Carlos",   "Perez Galdos 12",  Tipo_cliente::NR,             "780013456674");
             Pedido* p3 = new Pedido ("Taladro",     "Julio",    "Calle Estrella 17",Tipo_cliente::NVIP,             "780678345667");
             Pedido* p4 = new Pedido ("Mesa",        "Div9y",     "Calle Sol 71",     Tipo_cliente::NR,              "780453745667");
-            Pedido* p5 = new Pedido ("PS5",         "Padilla",  "Calle Luna 2",     Tipo_cliente::VIP,              "780044545667");
-            Pedido* p6 = new Pedido ("XBOX",        "Gsus",     "Calle Espacio 3",  Tipo_cliente::NVIP,             "780013456676");
+            Pedido* p5 = new Pedido ("PS5",         "Padilla",  "Calle Luna 2",     "VIP",              "780044545667", 1);
+            Pedido* p6 = new Pedido ("XBOX",        "Gsus",     "Calle Espacio 3",  Tipo_cliente::VIP,             "780013456676");
             Pedido* p7 = new Pedido ("Cerveza",     "Edu",      "Calle Grande 7",   Tipo_cliente::VIP,             "780678345667");
-            Pedido* p8 = new Pedido ("PC",          "Hugo",     "Calle Blanca 9",   Tipo_cliente::VIP,               "780453745667");
+            Pedido* p8 = new Pedido ("PC",          "Hugo",     "Calle Blanca 9",   Tipo_cliente::NR,               "780453745667");
             Pedido* p9 = new Pedido ("Pala",        "Alex",     "Calle Satelite 8", Tipo_cliente::VIP,              "780044545667");
             Pedido* p10 = new Pedido("Deportivas",  "Mario",   "Calle Estrecha 10",Tipo_cliente::NVIP,              "78001345667");
             Pedido* p11 = new Pedido("Cantimplora", "Ana",      "Calle Oscura 7",   Tipo_cliente::NVIP,             "780678345667");
