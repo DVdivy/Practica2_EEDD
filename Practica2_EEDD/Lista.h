@@ -11,6 +11,7 @@ public:
 	~Lista();
 	void add_izq(Pedido* p);
 	void add_der(Pedido* p);
+	void add_prioridad(Pedido* p);
 	void resto();
 	void eult();
 	Pedido* prim();

@@ -38,6 +38,41 @@ void Lista::add_der(Pedido* p)
 	longitud++;
 }
 
+void Lista::add_prioridad(Pedido* p)
+{
+    Nodo* aux = new Nodo();
+    Nodo* puntero = new Nodo();
+    if (es_vacia()
+        || (p->get_tipo_cliente() == NR)
+        || (ult()->get_tipo_cliente() == VIP)
+        || (ult()->get_tipo_cliente() == NVIP && p->get_tipo_cliente() != VIP))
+    {
+        add_der(p);
+    }
+    else if ((prim()->get_tipo_cliente() != VIP && p->get_tipo_cliente() == VIP)
+            || (prim()->get_tipo_cliente() == NR && p->get_tipo_cliente() == NVIP))
+    {
+        add_izq(p);
+    }
+    else {
+        aux->sig = primero;
+        if (ult()->get_tipo_cliente() != VIP && p->get_tipo_cliente() == VIP) {
+            while (aux->sig->pedido->get_tipo_cliente() == VIP) {
+                aux = aux->sig;
+            }
+        }
+
+        if (ult()->get_tipo_cliente() == NR && p->get_tipo_cliente() == NVIP) {
+            while (aux->sig->pedido->get_tipo_cliente() != NR) {
+                aux = aux->sig;
+            }
+        }
+        puntero->pedido = p;
+        puntero->sig = aux->sig;
+        aux->sig = puntero;
+    }
+}
+
 void Lista::resto()
 {
 	if (es_vacia()) {

@@ -128,7 +128,8 @@ void Pedido::arreglar_pedido() ///pide cambiar datos del pedido hasta que no hay
             {
                 string _descripcion;
                 cout << "Introduzca la nueva descripcion (no hay restricciones): " << endl;
-                cin >> _descripcion;
+                cin.ignore();
+                getline(cin,_descripcion);
                 set_descripcion_articulo(_descripcion);
                 correcto=false;
                 break;
@@ -137,7 +138,8 @@ void Pedido::arreglar_pedido() ///pide cambiar datos del pedido hasta que no hay
             {
                 string _nombre;
                 cout << "Introduzca el nuevo nombre (solo letras y espacios): " << endl;
-                cin >> _nombre;
+                cin.ignore();
+                getline(cin,_nombre);
                 set_nombre_cliente(_nombre);
                 correcto=false;
                 break;
@@ -146,7 +148,8 @@ void Pedido::arreglar_pedido() ///pide cambiar datos del pedido hasta que no hay
             {
                 string _direccion;
                 cout << "Introduzca la nueva direccion (Solo puede contener letras numeros y espacios): " << endl;
-                cin >> _direccion;
+                cin.ignore();
+                getline(cin,_direccion);
                 set_direccion(_direccion);
                 correcto=false;
                 break;
@@ -155,26 +158,28 @@ void Pedido::arreglar_pedido() ///pide cambiar datos del pedido hasta que no hay
             {
                 string _tipo;
                 cout << "Introduzca el nuevo tipo de cliente (no hay restricciones): " << endl; //si pone algo sin sentido se considera NR
-                cin >> _tipo;
+                cin.ignore();
+                getline(cin,_tipo);
                 set_tipo_cliente(_tipo);
                 correcto=false;
                 break;
             }
         case 5:
             {
-                string numero;
+                string _numero;
                 cout << "Introduzca el nuevo numero de tarjeta (12 numeros): " << endl;
-                cin >> numero;
-                set_numero_tarjeta(numero);
+                cin.ignore();
+                getline(cin,_numero);
+                set_numero_tarjeta(_numero);
                 correcto=false;
                 break;
             }
         case 6:
             {
-                int tiempo;
+                int _tiempo;
                 cout << "Introduzca el nuevo tiempo (numero del 1 al 10, incluidos): " << endl;
-                cin >> tiempo;
-                set_tiempo(tiempo);
+                cin >> _tiempo;
+                set_tiempo(_tiempo);
                 correcto=false;
                 break;
             }

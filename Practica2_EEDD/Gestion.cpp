@@ -57,7 +57,7 @@ void Gestion::enlistar_inicial() ///mete los primeros 4 pedidos (en caso de habe
     int registrados=0;
     while (registrados !=3 && !c_registrados->es_vacia()){
         if (c_registrados->prim()->comprobar_pedido()){
-            l_para_enviar->add_der(c_registrados->prim());
+            l_para_enviar->add_prioridad(c_registrados->prim());
             registrados++;
         }
         else{
@@ -69,7 +69,7 @@ void Gestion::enlistar_inicial() ///mete los primeros 4 pedidos (en caso de habe
     registrados=0;
     while (registrados!=1 && !c_no_registrados->es_vacia()){
         if (c_no_registrados->prim()->comprobar_pedido()){
-            l_para_enviar->add_der(c_no_registrados->prim());
+            l_para_enviar->add_prioridad(c_no_registrados->prim());
             registrados++;
         }
         else{
@@ -90,7 +90,7 @@ void Gestion::enlistar() ///añade los pedidos segun los criterios establecidos p
                 else{
                     if (p_erroneos->cima()->get_tipo_cliente()!= NR){
                         p_erroneos->cima()->arreglar_pedido();
-                        l_para_enviar->add_der(p_erroneos->cima());
+                        l_para_enviar->add_prioridad(p_erroneos->cima());
                         p_erroneos->desapilar();
                         contador=1;
                         enlistado=true;
@@ -104,7 +104,7 @@ void Gestion::enlistar() ///añade los pedidos segun los criterios establecidos p
                     contador++;
                 else{
                     if (c_no_registrados->prim()->comprobar_pedido()){
-                        l_para_enviar->add_der(c_no_registrados->prim());
+                        l_para_enviar->add_prioridad(c_no_registrados->prim());
                         contador=1;
                         enlistado=true;
                     }
@@ -116,7 +116,7 @@ void Gestion::enlistar() ///añade los pedidos segun los criterios establecidos p
             case 6:
                 if (!p_erroneos->es_vacia()){
                     p_erroneos->cima()->arreglar_pedido();
-                    l_para_enviar->add_der(p_erroneos->cima());
+                    l_para_enviar->add_prioridad(p_erroneos->cima());
                     p_erroneos->desapilar();
                     enlistado=true;
                 }
@@ -127,7 +127,7 @@ void Gestion::enlistar() ///añade los pedidos segun los criterios establecidos p
                     contador=4;
                 else{
                     if (c_registrados->prim()->comprobar_pedido()){
-                        l_para_enviar->add_der(c_registrados->prim());
+                        l_para_enviar->add_prioridad(c_registrados->prim());
                         contador++;
                         enlistado=true;
                     }
