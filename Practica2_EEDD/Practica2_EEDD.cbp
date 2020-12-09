@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -22,6 +23,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -32,6 +34,8 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="ABB.cpp" />
+		<Unit filename="ABB.h" />
 		<Unit filename="Cola.cpp" />
 		<Unit filename="Cola.h" />
 		<Unit filename="Gestion.cpp" />
@@ -41,6 +45,8 @@
 		<Unit filename="Main.cpp" />
 		<Unit filename="Nodo.cpp" />
 		<Unit filename="Nodo.h" />
+		<Unit filename="Nodo_a_bin.cpp" />
+		<Unit filename="Nodo_a_bin.h" />
 		<Unit filename="Pedido.cpp" />
 		<Unit filename="Pedido.h" />
 		<Unit filename="Pila.cpp" />
