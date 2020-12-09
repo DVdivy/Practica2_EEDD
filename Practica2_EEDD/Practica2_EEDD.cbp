@@ -45,6 +45,7 @@
 		<Unit filename="Pedido.h" />
 		<Unit filename="Pila.cpp" />
 		<Unit filename="Pila.h" />
+		<Unit filename="pedidos.txt.txt" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

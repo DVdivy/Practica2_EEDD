@@ -220,15 +220,15 @@ void Gestion::simula_tiempo() ///funcion principal del programa, establece el or
     << endl;
 
     while (!l_para_enviar->es_vacia() || !c_no_registrados->es_vacia() || !c_registrados->es_vacia() || !p_erroneos->es_vacia()){ ///comienza la simulacion del paso del tiempo
-        minutos_gestion++;
-        minutos++;
+        minutos_gestion1++;
+        minutos1++;
         if (l_para_enviar->es_vacia()) {
             cout << "Los pedidos son todos erroneos, enviando a la lista el primero de la pila de erroneos" << endl;
             enlistar();
         }
         else {
             Pedido* p;
-            if (minutos == 1) {
+            if (minutos1 == 1) {
                 p = l_para_enviar->prim();
                 l_para_enviar->resto(); //Enviar el pedido a "Enviando...", para que no se cuele otro pedido.
 
@@ -238,29 +238,29 @@ void Gestion::simula_tiempo() ///funcion principal del programa, establece el or
                 << " minutos."
                 << endl;
             }
-            if (minutos < p->get_tiempo()) {
+            if (minutos1 < p->get_tiempo()) {
                 cout
                 << "Han pasado: "
-                << minutos
+                << minutos1
                 << " minutos desde el envio del ultimo pedido. El proximo pedido necesita: "
                 << p->get_tiempo()
                 << endl;
             }
 
-            if (minutos == p->get_tiempo()){
+            if (minutos1 == p->get_tiempo()){
                 cout
                 << "HAN PASADO "
-                << minutos
+                << minutos1
                 << " MINUTOS, PEDIDO ENVIADO."
                 << "\n\n############ Esta es la estructura despues de haber enviado el pedido ############"
                 << endl;
             }
 
-            if (minutos_gestion % 2 == 0) {
+            if (minutos_gestion1 % 2 == 0) {
                 enlistar();
             }
 
-            if (minutos == p->get_tiempo()) {
+            if (minutos1 == p->get_tiempo()) {
                 //l_para_enviar->resto(); //enviamos pedido
                 mostrar_datos();
                 minutos=0;

@@ -10,6 +10,7 @@ private:
 	Cola* c_registrados;
 	Cola* c_no_registrados;
 	Lista* l_para_enviar;
+	Lista* l_para_enviar2;
 	Pila* p_erroneos;
 	int contador;
 public:
