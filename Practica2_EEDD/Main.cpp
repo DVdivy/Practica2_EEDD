@@ -2,6 +2,8 @@
 #include "ABB.h"
 #include <windows.h>
 #include <time.h>
+#include <fstream>
+
 Pedido* leer_pedido() ///recibe los datos del usuario y los almacena.
 {
     string input;
@@ -22,6 +24,48 @@ Pedido* leer_pedido() ///recibe los datos del usuario y los almacena.
     }
     return new Pedido(parametros_pedido[0], parametros_pedido[1], parametros_pedido[2], parametros_pedido[3], parametros_pedido[4], stoi(parametros_pedido[5]));
 }
+
+Pedido* leer_pedido_dado(string input) ///recibe los datos del usuario y los almacena.
+{
+    string parametros_pedido[6];
+    const char* cadena = input.c_str();
+    ///Devuelve el primer token
+    char* next_token = NULL;
+    char* token = strtok_s((char*)cadena, "//", &next_token);
+
+    ///Va cogiendo los tokens
+    for (int i = 0; i < 6; i++) {
+        parametros_pedido[i] = token;
+        token = strtok_s(NULL, "//", &next_token);
+    }
+    return new Pedido(parametros_pedido[0], parametros_pedido[1], parametros_pedido[2], parametros_pedido[3], parametros_pedido[4], stoi(parametros_pedido[5]));
+}
+
+
+void leer_fichero(Gestion* gestion)
+{
+    ifstream arch;
+    arch.open("pedidos.txt", ios::in);
+    if (arch.fail()){
+        cout << "error al abrir el archivo." << endl;
+        exit(1);
+    }
+    int n_lineas=0;
+    while(arch.good()){
+        if(arch.get()=='\n')
+            n_lineas++;
+    }
+
+    ifstream archivo_entrada("pedidos.txt");
+    string linea;
+    for (int contador = 0; contador < n_lineas; contador++){
+        getline(archivo_entrada,linea);
+        gestion->encolar(leer_pedido_dado(linea));
+        cout << linea << endl;
+    }
+}
+
+
 int main() {
     srand(time(NULL));//Para que los tiempos aleatorios de los pedidos sean diferentes cada vez que se ejecuta el programa.
     string eleccion;
@@ -31,6 +75,7 @@ int main() {
 
     cout << "Elija como desea hacer la simulacion." << endl;
     cout << "Introduzca \"1\" si desea crear sus propios productos" << endl;
+    cout << "Introduzca \"2\" si desea leer los pedidos del fichero \"pedidos.txt\": " << endl;
     cout << "Introduzca cualquier otro numero si desea utilizar 12 productos aleatorios." << endl;
     while (!correcto){
         cin >> eleccion;
@@ -54,6 +99,9 @@ int main() {
             for(int vueltas_dadas=0 ; vueltas_dadas<total_vueltas ; vueltas_dadas++){
                 gestion->encolar(leer_pedido());
             }
+            break;
+        case 2:
+            leer_fichero(gestion);
             break;
         default:
             ///se instancias varios pedidos

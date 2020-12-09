@@ -1,0 +1,9 @@
+Raqueta//Pedro//Calle Constelacion 32//NVIP//123345867812//6
+Termometro//Miriam//Calle Noche 2//NR//235956712257//9
+PCR//Hugo//Calle Dia 4//VIP//837582294753//1
+Teclado//Fernando//Calle Esperanza 7//VIP//926582648592//3
+Pantalla//Teresa//Calle Ilusion 23//NR//839571937592//9
+Altavoz//Francisco//Calle Suspenso 21//VIP//834957398530//5
+Auriculares//Eva//Calle Aprobado 12//VIP//759375837594//8
+Estuche//Antonio//Calle Suficiente 3//NR//859235810384//6
+Lampara//Godofredo//Calle Notable 6//NVIP//938573957348//2
