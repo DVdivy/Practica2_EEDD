@@ -73,3 +73,78 @@
 	"Nodo_a_bin.h"
 	"ABB.h"
 
+1607690046 source:c:\users\vicam\desktop\uni\2_año\1_cuatri\estructuras de datos\laboratorio\practicas\practica2_eedd\practica2_eedd\practica2_eedd\abb.cpp
+	"ABB.h"
+	"Nodo_a_bin.h"
+	<iostream>
+
+1607690046 c:\users\vicam\desktop\uni\2_año\1_cuatri\estructuras de datos\laboratorio\practicas\practica2_eedd\practica2_eedd\practica2_eedd\abb.h
+	<stdlib.h>
+
+1607690047 c:\users\vicam\desktop\uni\2_año\1_cuatri\estructuras de datos\laboratorio\practicas\practica2_eedd\practica2_eedd\practica2_eedd\nodo_a_bin.h
+	<stdlib.h>
+	<iostream>
+	"Pedido.h"
+
+1607444185 c:\users\vicam\desktop\uni\2_año\1_cuatri\estructuras de datos\laboratorio\practicas\practica2_eedd\practica2_eedd\practica2_eedd\pedido.h
+	<string>
+
+1607444185 source:c:\users\vicam\desktop\uni\2_año\1_cuatri\estructuras de datos\laboratorio\practicas\practica2_eedd\practica2_eedd\practica2_eedd\cola.cpp
+	"Cola.h"
+
+1607444185 c:\users\vicam\desktop\uni\2_año\1_cuatri\estructuras de datos\laboratorio\practicas\practica2_eedd\practica2_eedd\practica2_eedd\cola.h
+	"Nodo.h"
+
+1607444185 c:\users\vicam\desktop\uni\2_año\1_cuatri\estructuras de datos\laboratorio\practicas\practica2_eedd\practica2_eedd\practica2_eedd\nodo.h
+	<stdlib.h>
+	<iostream>
+	"Pedido.h"
+
+1607461112 source:c:\users\vicam\desktop\uni\2_año\1_cuatri\estructuras de datos\laboratorio\practicas\practica2_eedd\practica2_eedd\practica2_eedd\lista.cpp
+	"Lista.h"
+
+1607444185 c:\users\vicam\desktop\uni\2_año\1_cuatri\estructuras de datos\laboratorio\practicas\practica2_eedd\practica2_eedd\practica2_eedd\lista.h
+	"Nodo.h"
+
+1607690047 source:c:\users\vicam\desktop\uni\2_año\1_cuatri\estructuras de datos\laboratorio\practicas\practica2_eedd\practica2_eedd\practica2_eedd\main.cpp
+	"Gestion.h"
+	"ABB.h"
+	<windows.h>
+	<time.h>
+	<fstream>
+
+1607704882 c:\users\vicam\desktop\uni\2_año\1_cuatri\estructuras de datos\laboratorio\practicas\practica2_eedd\practica2_eedd\practica2_eedd\gestion.h
+	"Lista.h"
+	"Cola.h"
+	"Pila.h"
+	"Pedido.h"
+
+1607444185 c:\users\vicam\desktop\uni\2_año\1_cuatri\estructuras de datos\laboratorio\practicas\practica2_eedd\practica2_eedd\practica2_eedd\pila.h
+	"Nodo.h"
+
+1607444185 source:c:\users\vicam\desktop\uni\2_año\1_cuatri\estructuras de datos\laboratorio\practicas\practica2_eedd\practica2_eedd\practica2_eedd\nodo.cpp
+	"Nodo.h"
+
+1607690047 source:c:\users\vicam\desktop\uni\2_año\1_cuatri\estructuras de datos\laboratorio\practicas\practica2_eedd\practica2_eedd\practica2_eedd\nodo_a_bin.cpp
+	"Nodo_a_bin.h"
+	"ABB.h"
+
+1607444185 source:c:\users\vicam\desktop\uni\2_año\1_cuatri\estructuras de datos\laboratorio\practicas\practica2_eedd\practica2_eedd\practica2_eedd\pedido.cpp
+	"Pedido.h"
+	<stdlib.h>
+	<time.h>
+	<iostream>
+	<conio.h>
+	<string.h>
+
+1607444185 source:c:\users\vicam\desktop\uni\2_año\1_cuatri\estructuras de datos\laboratorio\practicas\practica2_eedd\practica2_eedd\practica2_eedd\pila.cpp
+	"Pila.h"
+	<iostream>
+	<stdio.h>
+
+1607705350 source:c:\users\vicam\desktop\uni\2_año\1_cuatri\estructuras de datos\laboratorio\practicas\practica2_eedd\practica2_eedd\practica2_eedd\gestion.cpp
+	"Gestion.h"
+	<iostream>
+	<conio.h>
+	<string.h>
+

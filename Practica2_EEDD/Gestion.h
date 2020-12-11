@@ -13,11 +13,13 @@ private:
 	Lista* l_para_enviar2;
 	Pila* p_erroneos;
 	int contador;
+	bool lista_selector;
 public:
 	Gestion();
 	~Gestion();
 
 	void encolar(Pedido* p);
+	void cambiar_lista();
 	void enlistar_inicial();
 	void enlistar();
 	void enviar_pedido();
