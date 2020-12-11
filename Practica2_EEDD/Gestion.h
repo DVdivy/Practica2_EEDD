@@ -9,7 +9,7 @@ class Gestion
 private:
 	Cola* c_registrados;
 	Cola* c_no_registrados;
-	Lista* l_para_enviar;
+	Lista* l_para_enviar1;
 	Lista* l_para_enviar2;
 	Pila* p_erroneos;
 	int contador;
@@ -28,7 +28,8 @@ public:
 	///GETTERS
 	Cola* get_c_registrados();
 	Cola* get_c_no_registrados();
-	Lista* get_l_para_enviar();
+	Lista* get_l_para_enviar1();
+	Lista* get_l_para_enviar2();
 	Pila* get_p_erroneos();
 };
 

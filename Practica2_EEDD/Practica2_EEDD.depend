@@ -75,7 +75,7 @@
 	<conio.h>
 	<string.h>
 
-1607444185 c:\users\vicam\desktop\uni\2_año\1_cuatri\estructuras de datos\laboratorio\practicas\practica2_eedd\practica2_eedd\practica2_eedd\gestion.h
+1607688951 c:\users\vicam\desktop\uni\2_año\1_cuatri\estructuras de datos\laboratorio\practicas\practica2_eedd\practica2_eedd\practica2_eedd\gestion.h
 	"Lista.h"
 	"Cola.h"
 	"Pila.h"
@@ -106,7 +106,7 @@
 	<iostream>
 	<stdio.h>
 
-1607515681 source:c:\users\vicam\desktop\uni\2_año\1_cuatri\estructuras de datos\laboratorio\practicas\practica2_eedd\practica2_eedd\practica2_eedd\main.cpp
+1607527868 source:c:\users\vicam\desktop\uni\2_año\1_cuatri\estructuras de datos\laboratorio\practicas\practica2_eedd\practica2_eedd\practica2_eedd\main.cpp
 	"Gestion.h"
 	<windows.h>
 	<time.h>
