@@ -21,7 +21,7 @@ public:
 	void encolar(Pedido* p);
 	void cambiar_lista();
 	void enlistar_inicial();
-	void enlistar();
+	void enlistar(Lista* lista_dada);
 	void enviar_pedido();
 	void mostrar_datos();
 	void simula_tiempo();

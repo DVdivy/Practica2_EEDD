@@ -120,7 +120,7 @@ void Gestion::enlistar_inicial() ///mete los primeros 4 pedidos (en caso de habe
     }
 }
 
-void Gestion::enlistar() ///añade los pedidos segun los criterios establecidos por la practica
+void Gestion::enlistar(Lista* lista_dada) ///añade los pedidos segun los criterios establecidos por la practica
 {
     bool enlistado=false;
     while (!enlistado && !(p_erroneos->es_vacia() && c_no_registrados->es_vacia() && c_registrados->es_vacia())){
@@ -131,17 +131,11 @@ void Gestion::enlistar() ///añade los pedidos segun los criterios establecidos p
                 else{
                     if (p_erroneos->cima()->get_tipo_cliente()!= NR){
                         p_erroneos->cima()->arreglar_pedido();
-                        l_para_enviar1->add_prioridad(p_erroneos->cima());
-
-                        cout
-                        << "\t\t>>>>>>>>>>>>>>>> Insertado nuevo pedido a la lista ("
-                        << p_erroneos->cima()->get_descripcion_articulo()
-                        << ", del cliente "
-                        << p_erroneos->cima()->get_nombre_cliente()
-                        << ")"
-                        << endl;
-
+                        lista_dada->add_prioridad(p_erroneos->cima());
+                        cout << "\t\t>>>>>>>>>>>>>>>> Insertado nuevo pedido a la lista (" << p_erroneos->cima()->get_descripcion_articulo() << ", del cliente "
+                        << p_erroneos->cima()->get_nombre_cliente() << ")<<<<<<<<<<<<<<<<<<<" << endl;
                         p_erroneos->desapilar();
+                        cambiar_lista();
                         contador=1;
                         enlistado=true;
                     }
@@ -154,16 +148,12 @@ void Gestion::enlistar() ///añade los pedidos segun los criterios establecidos p
                     contador++;
                 else{
                     if (c_no_registrados->prim()->comprobar_pedido()){
-                        l_para_enviar1->add_prioridad(c_no_registrados->prim());
+                        lista_dada->add_prioridad(c_no_registrados->prim());
 
-                        cout
-                        << "\t\t>>>>>>>>>>>>>>>> Insertado nuevo pedido a la lista ("
-                        << c_no_registrados->prim()->get_descripcion_articulo()
-                        << ", del cliente "
-                        << c_no_registrados->prim()->get_nombre_cliente()
-                        << ")"
-                        << endl;
-
+                        cout << "\t\t>>>>>>>>>>>>>>>> Insertado nuevo pedido a la lista ("
+                        << c_no_registrados->prim()->get_descripcion_articulo() << ", del cliente "
+                        << c_no_registrados->prim()->get_nombre_cliente() << ")<<<<<<<<<<<<<<<<<<<" << endl;
+                        cambiar_lista();
                         contador=1;
                         enlistado=true;
                     }
@@ -175,16 +165,12 @@ void Gestion::enlistar() ///añade los pedidos segun los criterios establecidos p
             case 6:
                 if (!p_erroneos->es_vacia()){
                     p_erroneos->cima()->arreglar_pedido();
-                    l_para_enviar1->add_prioridad(p_erroneos->cima());
+                    lista_dada->add_prioridad(p_erroneos->cima());
 
-                    cout
-                    << "\t\t>>>>>>>>>>>>>>>> Insertado nuevo pedido a la lista ("
-                    << p_erroneos->cima()->get_descripcion_articulo()
-                    << ", del cliente "
-                    << p_erroneos->cima()->get_nombre_cliente()
-                    << ")"
-                    << endl;
-
+                    cout << "\t\t>>>>>>>>>>>>>>>> Insertado nuevo pedido a la lista ("
+                    << p_erroneos->cima()->get_descripcion_articulo() << ", del cliente "
+                    << p_erroneos->cima()->get_nombre_cliente() << ")<<<<<<<<<<<<<<<<<<<<" << endl;
+                    cambiar_lista();
                     p_erroneos->desapilar();
                     enlistado=true;
                 }
@@ -195,16 +181,12 @@ void Gestion::enlistar() ///añade los pedidos segun los criterios establecidos p
                     contador=4;
                 else{
                     if (c_registrados->prim()->comprobar_pedido()){
-                        l_para_enviar1->add_prioridad(c_registrados->prim());
+                        lista_dada->add_prioridad(c_registrados->prim());
 
-                        cout
-                        << "\t\t>>>>>>>>>>>>>>>> Insertado nuevo pedido a la lista ("
-                        << c_registrados->prim()->get_descripcion_articulo()
-                        << ", del cliente "
-                        << c_registrados->prim()->get_nombre_cliente()
-                        << ")"
-                        << endl;
-
+                        cout << "\t\t>>>>>>>>>>>>>>>> Insertado nuevo pedido a la lista ("
+                        << c_registrados->prim()->get_descripcion_articulo() << ", del cliente "
+                        << c_registrados->prim()->get_nombre_cliente() << ")<<<<<<<<<<<<<<<<<" << endl;
+                        cambiar_lista();
                         contador++;
                         enlistado=true;
                     }
@@ -241,7 +223,6 @@ void Gestion::mostrar_datos() { ///muestra todos los datos
 void Gestion::simula_tiempo() ///funcion principal del programa, establece el orden en que se invocan las funciones y simula el paso del tiempo
 {
     int minutos_gestion1=0;
-    int minutos_gestion2=0;
     int minutos1=0;
     int minutos2=0;
     cout << "\n\n\n############ Asi se encuentra la"
@@ -262,9 +243,13 @@ void Gestion::simula_tiempo() ///funcion principal del programa, establece el or
     while (!l_para_enviar1->es_vacia() || !c_no_registrados->es_vacia() || !c_registrados->es_vacia() || !p_erroneos->es_vacia()){ ///comienza la simulacion del paso del tiempo
         minutos_gestion1++;
         minutos1++;
+        minutos2++;
         if (l_para_enviar1->es_vacia()) {
             cout << "Los pedidos son todos erroneos, enviando a la lista el primero de la pila de erroneos" << endl;
-            enlistar();
+            if (lista_selector)
+                enlistar(l_para_enviar1);
+            else
+                enlistar(l_para_enviar2);
         }
         else {
             Pedido* p;
@@ -277,8 +262,7 @@ void Gestion::simula_tiempo() ///funcion principal del programa, establece el or
             }
             if (minutos1 < p->get_tiempo()) {
                 cout << "Han pasado: " << minutos1
-                << " minutos desde el envio del ultimo pedido. El proximo pedido necesita: "
-                << p->get_tiempo() << endl;
+                << " minutos desde el envio del ultimo pedido. El proximo pedido necesita: " << p->get_tiempo() << endl;
             }
 
             if (minutos1 == p->get_tiempo()){
@@ -287,7 +271,10 @@ void Gestion::simula_tiempo() ///funcion principal del programa, establece el or
             }
 
             if (minutos_gestion1 % 2 == 0) {
-                enlistar();
+                if (lista_selector)
+                    enlistar(l_para_enviar1);
+                else
+                    enlistar(l_para_enviar2);
             }
 
             if (minutos1 == p->get_tiempo()) {
