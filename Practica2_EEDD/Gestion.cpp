@@ -244,7 +244,7 @@ void Gestion::simula_tiempo() ///funcion principal del programa, establece el or
         minutos_gestion1++;
         minutos1++;
         minutos2++;
-        if (l_para_enviar1->es_vacia()) {
+        if (l_para_enviar1->es_vacia() && l_para_enviar2->es_vacia()) {
             cout << "Los pedidos son todos erroneos, enviando a la lista el primero de la pila de erroneos" << endl;
             if (lista_selector)
                 enlistar(l_para_enviar1);
@@ -252,35 +252,57 @@ void Gestion::simula_tiempo() ///funcion principal del programa, establece el or
                 enlistar(l_para_enviar2);
         }
         else {
-            Pedido* p;
-            if (minutos1 == 1) {
-                p = l_para_enviar1->prim();
-                l_para_enviar1->resto(); //Enviar el pedido a "Enviando...", para que no se cuele otro pedido.
+            if (!l_para_enviar1->es_vacia()){
+                Pedido* p;
+                if (minutos1 == 1) {
+                    p = l_para_enviar1->prim();
+                    l_para_enviar1->resto(); //Enviar el pedido a "Enviando...", para que no se cuele otro pedido.
+                    cout << "\nPREPARANDO ENVIO DE LA PRIMERA LISTA:\nEl pedido requiere " << p->get_tiempo() << " minutos." << endl;
+                }
+                if (minutos1 < p->get_tiempo())
+                    cout << "Han pasado: " << minutos1
+                    << " minutos desde el envio del ultimo pedido. El proximo pedido necesita: " << p->get_tiempo() << endl;
+                if (minutos1 == p->get_tiempo())
+                    cout << "HAN PASADO " << minutos1
+                    << " MINUTOS, PEDIDO ENVIADO.\n\n############ Esta es la estructura despues de haber enviado el pedido ############" << endl;
 
-                cout << "\nPREPARANDO ENVIO:\nEl pedido requiere "
-                << p->get_tiempo() << " minutos." << endl;
-            }
-            if (minutos1 < p->get_tiempo()) {
-                cout << "Han pasado: " << minutos1
-                << " minutos desde el envio del ultimo pedido. El proximo pedido necesita: " << p->get_tiempo() << endl;
-            }
+                if (minutos_gestion1 % 2 == 0) {
+                    if (lista_selector)
+                        enlistar(l_para_enviar1);
+                    else
+                        enlistar(l_para_enviar2);
+                }
 
-            if (minutos1 == p->get_tiempo()){
-                cout << "HAN PASADO " << minutos1 << " MINUTOS, PEDIDO ENVIADO."
-                << "\n\n############ Esta es la estructura despues de haber enviado el pedido ############" << endl;
+                if (minutos1 == p->get_tiempo()) {
+                    //l_para_enviar1->resto(); //enviamos pedido
+                    mostrar_datos();
+                    minutos1=0;
+                }
             }
+            if (!l_para_enviar2->es_vacia()){
+                Pedido* pp;
+                if (minutos2 == 1) {
+                    pp = l_para_enviar2->prim();
+                    l_para_enviar2->resto(); //Enviar el pedido a "Enviando...", para que no se cuele otro pedido.
+                    cout << "\nPREPARANDO ENVIO DE LA SEGUNDA LISTA:\nEl pedido requiere " << pp->get_tiempo() << " minutos." << endl;
+                }
+                if (minutos2 < pp->get_tiempo())
+                    cout << "Han pasado: " << minutos2 << " minutos desde el envio del ultimo pedido de la lista 2. El proximo pedido de la lista 2 necesita: " << pp->get_tiempo() << endl;
+                if (minutos2 == pp->get_tiempo())
+                    cout << "HAN PASADO " << minutos2 << " MINUTOS, PEDIDO DE LA LISTA 2 ENVIADO.\n\n############ Esta es la estructura despues de haber enviado el pedido ############" << endl;
 
-            if (minutos_gestion1 % 2 == 0) {
-                if (lista_selector)
-                    enlistar(l_para_enviar1);
-                else
-                    enlistar(l_para_enviar2);
-            }
+                if (minutos_gestion1 % 2 == 0) {
+                    if (lista_selector)
+                        enlistar(l_para_enviar1);
+                    else
+                        enlistar(l_para_enviar2);
+                }
 
-            if (minutos1 == p->get_tiempo()) {
-                //l_para_enviar1->resto(); //enviamos pedido
-                mostrar_datos();
-                minutos1=0;
+                if (minutos2 == pp->get_tiempo()) {
+                    //l_para_enviar1->resto(); //enviamos pedido
+                    mostrar_datos();
+                    minutos2=0;
+                }
             }
         }
     }
