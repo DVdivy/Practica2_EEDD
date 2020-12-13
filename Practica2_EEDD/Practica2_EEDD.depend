@@ -30,13 +30,13 @@
 1607349046 c:\users\david\documents\github\practica2_eedd\practica2_eedd\pila.h
 	"Nodo.h"
 
-1607449489 source:c:\users\david\documents\github\practica2_eedd\practica2_eedd\gestion.cpp
+1607866501 source:c:\users\david\documents\github\practica2_eedd\practica2_eedd\gestion.cpp
 	"Gestion.h"
 	<iostream>
 	<conio.h>
 	<string.h>
 
-1607275111 c:\users\david\documents\github\practica2_eedd\practica2_eedd\gestion.h
+1607863962 c:\users\david\documents\github\practica2_eedd\practica2_eedd\gestion.h
 	"Lista.h"
 	"Cola.h"
 	"Pila.h"
@@ -50,11 +50,12 @@
 	<conio.h>
 	<string.h>
 
-1607546758 source:c:\users\david\documents\github\practica2_eedd\practica2_eedd\main.cpp
+1607552047 source:c:\users\david\documents\github\practica2_eedd\practica2_eedd\main.cpp
 	"Gestion.h"
 	"ABB.h"
 	<windows.h>
 	<time.h>
+	<fstream>
 
 1607547442 source:c:\users\david\documents\github\practica2_eedd\practica2_eedd\abb.cpp
 	"ABB.h"
