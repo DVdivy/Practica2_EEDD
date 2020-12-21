@@ -11,6 +11,7 @@ private:
     //Pedido* pedido;
     Nodo_a_bin* raiz;
 
+    bool es_menor(string s1, string s2); //devuelve true si s1 va antes alfabéticamente o si es igual que s2
 public:
     ABB();
     ~ABB();

@@ -12,6 +12,18 @@ ABB::~ABB()
     delete raiz;
 }
 
+bool ABB::es_menor(string s1, string s2)
+{
+    for (int i=0; i<s1.length(); i++) {
+        s1[i] = toupper(s1[i]);
+    }
+    for (int i=0; i<s2.length(); i++) {
+        s2[i] = toupper(s2[i]);
+    }
+    if (s1 <= s2) return true;
+    else return false;
+}
+
 void ABB::insertar(Pedido* p)
 {
     if (raiz == nullptr)
@@ -28,7 +40,7 @@ void ABB::insertar(Pedido* p)
     {
         raiz->lista_pedidos->add_prioridad(p);
     }
-    else if (p->get_nombre_cliente() <= raiz->nombre)
+    else if (es_menor(p->get_nombre_cliente(), raiz->nombre))
     {
         raiz->arbol_izquierdo->insertar(p);
     }
@@ -111,9 +123,38 @@ int ABB::altura()
 }
 int ABB::unidades_producto(string descripcion)
 {
+    int contador;
+    if (raiz == nullptr)
+        return 0;
+    else {
+        Lista* lp = new Lista();
+        lp = raiz->lista_pedidos;
+        contador = 0;
+        while (!lp->es_vacia()) {
+            if(lp->prim()->get_descripcion_articulo() == descripcion)
+                contador++;
+            lp->resto();
+        }
+        return contador + raiz->arbol_izquierdo->unidades_producto(descripcion) + raiz->arbol_derecho->unidades_producto(descripcion);
+    }
 
 }
 void ABB::mostrar_datos_VIP()
 {
-
+    //Para recorrerlos alfabéticamente se recorre el arbol en inorden
+    if (raiz == nullptr)
+        return;
+    else {
+        raiz->arbol_izquierdo->mostrar_datos_VIP();
+        //cout << "EL TIPO DE CLIENTE ES " << raiz->tipo_cliente << endl;
+        if (raiz->tipo_cliente == "VIP") {
+            cout << "========================================================" << endl;
+            cout << "Nombre del cliente: " << raiz->nombre << endl;
+            cout << "Tipo del cliente: " << raiz->tipo_cliente << endl;
+            cout << "Tarjeta de credito: " << raiz->tarjeta << endl;
+            raiz->lista_pedidos->mostrar_lista_datos_pedido();
+            cout << "========================================================" << endl;
+        }
+        raiz->arbol_derecho->mostrar_datos_VIP();
+    }
 }

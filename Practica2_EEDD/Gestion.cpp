@@ -403,7 +403,7 @@ void Gestion::opciones_arbol()
                     cout << "Escriba la descripcion del producto que quiere buscar: " << endl;
                     cin.ignore();
                     getline(cin, descripcion);
-                    a_clientes->unidades_producto(descripcion);
+                    cout << "Se han vendido " << a_clientes->unidades_producto(descripcion) << " unidades." << endl << endl;
                     correcto = false;
                     break;
                 }
