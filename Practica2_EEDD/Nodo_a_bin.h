@@ -9,11 +9,11 @@ class ABB;
 
 class Nodo_a_bin {
 private:
-	//Pedido* pedido;
 	string nombre;
 	string tarjeta;
 	string tipo_cliente;
 	Lista* lista_pedidos;
+
 	ABB* arbol_izquierdo;
 	ABB* arbol_derecho;
 

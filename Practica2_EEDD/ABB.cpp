@@ -61,8 +61,6 @@ void ABB::mostrar_arbol(int contador = 0)
         }
         cout << raiz->nombre << endl << endl;
         raiz->arbol_izquierdo->mostrar_arbol(contador + 1);
-
-
     }
 }
 

@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1607273000 source:c:\users\david\documents\github\practica2_eedd\practica2_eedd\cola.cpp
+1608591306 source:c:\users\david\documents\github\practica2_eedd\practica2_eedd\cola.cpp
 	"Cola.h"
 
 1607273000 c:\users\david\documents\github\practica2_eedd\practica2_eedd\cola.h
@@ -13,7 +13,7 @@
 1608480863 c:\users\david\documents\github\practica2_eedd\practica2_eedd\pedido.h
 	<string>
 
-1608482354 source:c:\users\david\documents\github\practica2_eedd\practica2_eedd\lista.cpp
+1608591294 source:c:\users\david\documents\github\practica2_eedd\practica2_eedd\lista.cpp
 	"Lista.h"
 
 1608480661 c:\users\david\documents\github\practica2_eedd\practica2_eedd\lista.h
@@ -22,7 +22,7 @@
 1607273000 source:c:\users\david\documents\github\practica2_eedd\practica2_eedd\nodo.cpp
 	"Nodo.h"
 
-1607349042 source:c:\users\david\documents\github\practica2_eedd\practica2_eedd\pila.cpp
+1608591300 source:c:\users\david\documents\github\practica2_eedd\practica2_eedd\pila.cpp
 	"Pila.h"
 	<iostream>
 	<stdio.h>
@@ -30,7 +30,7 @@
 1607349046 c:\users\david\documents\github\practica2_eedd\practica2_eedd\pila.h
 	"Nodo.h"
 
-1608556401 source:c:\users\david\documents\github\practica2_eedd\practica2_eedd\gestion.cpp
+1608591768 source:c:\users\david\documents\github\practica2_eedd\practica2_eedd\gestion.cpp
 	"Gestion.h"
 	<iostream>
 	<conio.h>
@@ -58,7 +58,7 @@
 	<time.h>
 	<fstream>
 
-1608559970 source:c:\users\david\documents\github\practica2_eedd\practica2_eedd\abb.cpp
+1608592223 source:c:\users\david\documents\github\practica2_eedd\practica2_eedd\abb.cpp
 	"ABB.h"
 	"Nodo_a_bin.h"
 	<iostream>
@@ -67,7 +67,7 @@
 	<stdlib.h>
 	"Pedido.h"
 
-1608482516 c:\users\david\documents\github\practica2_eedd\practica2_eedd\nodo_a_bin.h
+1608592033 c:\users\david\documents\github\practica2_eedd\practica2_eedd\nodo_a_bin.h
 	<stdlib.h>
 	<iostream>
 	"Pedido.h"

@@ -71,7 +71,7 @@ void Gestion::encolar(Pedido* p)
 void Gestion::enlistar_inicial() ///mete los primeros 4 pedidos (en caso de haber 4) de las colas a la lista.
 {
     int registrados=0;
-    while (registrados !=6 && !c_registrados->es_vacia()){
+    while (registrados !=3 && !c_registrados->es_vacia()){
         if (lista_selector){
             if (c_registrados->prim()->comprobar_pedido()){
                 l_para_enviar1->add_prioridad(c_registrados->prim());
@@ -97,7 +97,7 @@ void Gestion::enlistar_inicial() ///mete los primeros 4 pedidos (en caso de habe
     }
 
     registrados=0;
-    while (registrados!=2 && !c_no_registrados->es_vacia()){
+    while (registrados!=1 && !c_no_registrados->es_vacia()){
         if (lista_selector){
             if (c_no_registrados->prim()->comprobar_pedido()){
                 l_para_enviar1->add_prioridad(c_no_registrados->prim());
@@ -281,7 +281,6 @@ void Gestion::simula_tiempo() ///funcion principal del programa, establece el or
                 Pedido* p;
                 if (minutos1 == 1) {
                     p = l_para_enviar1->prim();
-                    a_clientes->insertar(p); //Metiendo el cliente en el arbol
                     l_para_enviar1->resto(); //Enviar el pedido a "Enviando...", para que no se cuele otro pedido.
                     cout << "\nPREPARANDO ENVIO DE LA PRIMERA LISTA:\nEl pedido requiere " << p->get_tiempo() << " minutos." << endl;
                     enviando1 = true;
@@ -306,6 +305,7 @@ void Gestion::simula_tiempo() ///funcion principal del programa, establece el or
 
                 if (minutos1 == p->get_tiempo()) {
                     //l_para_enviar1->resto(); //enviamos pedido
+                    a_clientes->insertar(p); //Metiendo el cliente en el arbol
                     mostrar_datos();
                     minutos1=0;
                     enviando1 = false;
@@ -315,7 +315,6 @@ void Gestion::simula_tiempo() ///funcion principal del programa, establece el or
                 Pedido* p2;
                 if (minutos2 == 1) {
                     p2 = l_para_enviar2->prim();
-                    a_clientes->insertar(p2); //Metiendo el cliente en el arbol
                     l_para_enviar2->resto(); //Enviar el pedido a "Enviando...", para que no se cuele otro pedido.
                     cout << "\nPREPARANDO ENVIO DE LA SEGUNDA LISTA:\nEl pedido requiere " << p2->get_tiempo() << " minutos." << endl;
                     enviando2 = true;
@@ -333,6 +332,7 @@ void Gestion::simula_tiempo() ///funcion principal del programa, establece el or
                 }
 
                 if (minutos2 == p2->get_tiempo()) {
+                    a_clientes->insertar(p2); //Metiendo el cliente en el arbol
                     mostrar_datos();
                     minutos2=0;
                     enviando2 = false;
