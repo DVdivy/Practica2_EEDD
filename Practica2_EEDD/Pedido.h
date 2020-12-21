@@ -31,7 +31,6 @@ public:
 	bool comprobar_numero_tarjeta();
 	bool comprobar_tiempo();
 	bool comprobar_pedido();
-	Pedido* leer_pedido();
 
 	///GETTERS
 	string get_descripcion_articulo() const;
@@ -51,5 +50,6 @@ public:
     void set_tiempo(int _tiempo);
 	///TO_STRING
 	string mostrar_pedido();
+	string mostrar_pedido_datos_pedido();
 };
 

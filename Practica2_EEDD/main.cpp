@@ -67,6 +67,37 @@ void leer_fichero(Gestion* gestion)
 
 
 int main() {
+
+    /*ABB* arbol = new ABB();
+
+    Pedido* p1 = new Pedido ("Martillo",    "Andres",   "Jose Zorrilla 7",  "NVIP",              "780044545667", 2);
+    Pedido* p2 = new Pedido ("Libro",       "Carlos",   "Perez Galdos 12",  Tipo_cliente::NR,             "780013456674");
+    Pedido* p3 = new Pedido ("Taladro",     "Julio",    "Calle Estrella 17",Tipo_cliente::NVIP,             "780678345667");
+    Pedido* p4 = new Pedido ("Mesa",        "Div9y",     "Calle Sol 71",     Tipo_cliente::NR,              "780453745667");
+    Pedido* p5 = new Pedido ("PS5",         "Padilla",  "Calle Luna 2",     "VIP",              "780044545667", 1);
+    Pedido* p6 = new Pedido ("XBOX",        "Gsus",     "Calle Espacio 3",  Tipo_cliente::VIP,             "780013456676");
+    Pedido* p7 = new Pedido ("Cerveza",     "Edu",      "Calle Grande 7",   Tipo_cliente::VIP,             "780678345667");
+    Pedido* p8 = new Pedido ("PC",          "Hugo",     "Calle Blanca 9",   Tipo_cliente::NR,               "780453745667");
+    Pedido* p9 = new Pedido ("Pala",        "Alex",     "Calle Satelite 8", Tipo_cliente::VIP,              "780044545667");
+    Pedido* p10 = new Pedido("Deportivas",  "Mario",   "Calle Estrecha 10",Tipo_cliente::NVIP,              "78001345667");
+    Pedido* p11 = new Pedido("Cantimplora", "Ana",      "Calle Oscura 7",   Tipo_cliente::NVIP,             "780678345667");
+    Pedido* p12 = new Pedido("Auriculares", "Alfredo",  "Calle Jon 1",      Tipo_cliente::NR,               "780453745667");
+
+    arbol->insertar(p1);
+    arbol->insertar(p2);
+    arbol->insertar(p3);
+    arbol->insertar(p4);
+    arbol->insertar(p5);
+    arbol->insertar(p6);
+    arbol->insertar(p7);
+    arbol->insertar(p8);
+    arbol->insertar(p9);
+    arbol->insertar(p10);
+    arbol->insertar(p11);
+    arbol->insertar(p12);
+
+    arbol->mostrar_arbol(0);*/
+
     srand(time(NULL));//Para que los tiempos aleatorios de los pedidos sean diferentes cada vez que se ejecuta el programa.
     string eleccion;
     bool correcto=false;
@@ -111,7 +142,7 @@ int main() {
             Pedido* p4 = new Pedido ("Mesa",        "Div9y",     "Calle Sol 71",     Tipo_cliente::NR,              "780453745667");
             Pedido* p5 = new Pedido ("PS5",         "Padilla",  "Calle Luna 2",     "VIP",              "780044545667", 1);
             Pedido* p6 = new Pedido ("XBOX",        "Gsus",     "Calle Espacio 3",  Tipo_cliente::VIP,             "780013456676");
-            Pedido* p7 = new Pedido ("Cerveza",     "Edu",      "Calle Grande 7",   Tipo_cliente::VIP,             "780678345667");
+            Pedido* p7 = new Pedido ("Cerveza",     "divy",      "Calle Grande 7",   Tipo_cliente::VIP,             "780678345667");
             Pedido* p8 = new Pedido ("PC",          "Hugo",     "Calle Blanca 9",   Tipo_cliente::NR,               "780453745667");
             Pedido* p9 = new Pedido ("Pala",        "Alex",     "Calle Satelite 8", Tipo_cliente::VIP,              "780044545667");
             Pedido* p10 = new Pedido("Deportivas",  "Mario",   "Calle Estrecha 10",Tipo_cliente::NVIP,              "78001345667");

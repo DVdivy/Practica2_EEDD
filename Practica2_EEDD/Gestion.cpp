@@ -12,6 +12,7 @@ Gestion::Gestion()
     l_para_enviar1 = new Lista();
     l_para_enviar2 = new Lista();
     p_erroneos = new Pila();
+    a_clientes = new ABB();
     contador = 1;
     lista_selector = true;
 }
@@ -21,7 +22,9 @@ Gestion::~Gestion()
     delete(c_no_registrados);
     delete(c_registrados);
     delete(l_para_enviar1);
+    delete(l_para_enviar2);
     delete(p_erroneos);
+    delete(a_clientes);
 }
 
 ///GETTERS
@@ -164,7 +167,7 @@ void Gestion::enlistar(Lista* lista_dada) ///añade los pedidos segun los criteri
                         enlistado=true;
                     }
                     else
-                        p_erroneos->apilar(c_no_registrados->prim());
+                        p_erroneos->apilar_prioridad(c_no_registrados->prim());
                     c_no_registrados->desencolar();
                 }
                 break;
@@ -201,7 +204,7 @@ void Gestion::enlistar(Lista* lista_dada) ///añade los pedidos segun los criteri
                         enlistado=true;
                     }
                     else
-                        p_erroneos->apilar(c_registrados->prim());
+                        p_erroneos->apilar_prioridad(c_registrados->prim());
                     c_registrados->desencolar();
                 }
                 break;
@@ -278,6 +281,7 @@ void Gestion::simula_tiempo() ///funcion principal del programa, establece el or
                 Pedido* p;
                 if (minutos1 == 1) {
                     p = l_para_enviar1->prim();
+                    a_clientes->insertar(p); //Metiendo el cliente en el arbol
                     l_para_enviar1->resto(); //Enviar el pedido a "Enviando...", para que no se cuele otro pedido.
                     cout << "\nPREPARANDO ENVIO DE LA PRIMERA LISTA:\nEl pedido requiere " << p->get_tiempo() << " minutos." << endl;
                     enviando1 = true;
@@ -308,16 +312,17 @@ void Gestion::simula_tiempo() ///funcion principal del programa, establece el or
                 }
             }
             if (!l_para_enviar2->es_vacia() || enviando2){
-                Pedido* pp;
+                Pedido* p2;
                 if (minutos2 == 1) {
-                    pp = l_para_enviar2->prim();
+                    p2 = l_para_enviar2->prim();
+                    a_clientes->insertar(p2); //Metiendo el cliente en el arbol
                     l_para_enviar2->resto(); //Enviar el pedido a "Enviando...", para que no se cuele otro pedido.
-                    cout << "\nPREPARANDO ENVIO DE LA SEGUNDA LISTA:\nEl pedido requiere " << pp->get_tiempo() << " minutos." << endl;
+                    cout << "\nPREPARANDO ENVIO DE LA SEGUNDA LISTA:\nEl pedido requiere " << p2->get_tiempo() << " minutos." << endl;
                     enviando2 = true;
                 }
-                if (minutos2 < pp->get_tiempo())
-                    cout << "Han pasado: " << minutos2 << " minutos desde el envio del ultimo pedido de la lista 2. El proximo pedido de la lista 2 necesita: " << pp->get_tiempo() << endl;
-                if (minutos2 == pp->get_tiempo())
+                if (minutos2 < p2->get_tiempo())
+                    cout << "Han pasado: " << minutos2 << " minutos desde el envio del ultimo pedido de la lista 2. El proximo pedido de la lista 2 necesita: " << p2->get_tiempo() << endl;
+                if (minutos2 == p2->get_tiempo())
                     cout << "HAN PASADO " << minutos2 << " MINUTOS, PEDIDO DE LA LISTA 2 ENVIADO.\n\n############ Esta es la estructura despues de haber enviado el pedido ############" << endl;
 
                 if (minutos_gestion1 % 2 == 0) {
@@ -327,8 +332,7 @@ void Gestion::simula_tiempo() ///funcion principal del programa, establece el or
                         enlistar(l_para_enviar2);
                 }
 
-                if (minutos2 == pp->get_tiempo()) {
-                    //l_para_enviar1->resto(); //enviamos pedido
+                if (minutos2 == p2->get_tiempo()) {
                     mostrar_datos();
                     minutos2=0;
                     enviando2 = false;
@@ -336,4 +340,87 @@ void Gestion::simula_tiempo() ///funcion principal del programa, establece el or
             }
         }
     }
+    a_clientes->mostrar_arbol(0);
+    opciones_arbol();
 }
+
+void Gestion::opciones_arbol()
+{
+    bool correcto = false;
+    bool salir;
+    bool fin_programa = false;
+    while(!fin_programa) {
+        string eleccion;
+        cout << "Seleccione una de las siguientes opciones:" << endl;
+        cout << "1: Buscar un cliente en el abb de envíos, dado su nombre, y mostrar los datos de todos los pedidos del mismo." << endl;
+        cout << "2: Mostrar los datos de los clientes y sus pedidos recorriendo el abb de envíos en preorden." << endl;
+        cout << "3: Calcular la altura del abb de envíos creado." << endl;
+        cout << "4: Calcular cuantas unidades de un producto se han vendido, dada la descripción del mismo." << endl;
+        cout << "5: Mostrar los datos de clientes VIP del abb de envíos, ordenados alfabéticamente por el nombre del cliente." << endl;
+        cout << "6: Salir del sistema." << endl;
+        while (!correcto){
+            cin >> eleccion;
+            salir = false;
+            for (int i=0 ; i<eleccion.size() && !salir; i++){
+                if (!(eleccion[i]>='0' && eleccion[i] <='9')){
+                    cout << "Opcion no valida, introduzca la eleccion de nuevo: " << endl;
+                    correcto = false;
+                    salir = true;
+                }
+                else if (stoi(eleccion)<0 || stoi(eleccion)>6) {
+                    cout << "Numero no valido, introduzcalo de nuevo: " << endl;
+                    correcto = false;
+                    salir = true;
+                }
+                else
+                    correcto=true;
+            }
+        }
+
+        switch (stoi(eleccion)) {
+            case 1:
+                {
+                    string nombre;
+                    cout << "Escriba el nombre del cliente que quiere buscar: " << endl;
+                    cin.ignore();
+                    getline(cin, nombre);
+                    a_clientes->buscar_cliente(nombre);
+                    correcto = false;
+                    break;
+                }
+            case 2:
+                a_clientes->mostrar_datos_preorden();
+                correcto = false;
+                break;
+            case 3:
+                cout << "La altura del arbol es: " << a_clientes->altura() << endl << endl;
+                a_clientes->altura();
+                correcto = false;
+                break;
+            case 4:
+                {
+                    string descripcion;
+                    cout << "Escriba la descripcion del producto que quiere buscar: " << endl;
+                    cin.ignore();
+                    getline(cin, descripcion);
+                    a_clientes->unidades_producto(descripcion);
+                    correcto = false;
+                    break;
+                }
+            case 5:
+                a_clientes->mostrar_datos_VIP();
+                correcto = false;
+                break;
+            case 6:
+                correcto = false;
+                fin_programa = true;
+                cout << "FIN DEL PROGRAMA." << endl;
+                break;
+            default:
+                correcto = false;
+
+        }
+    }
+}
+
+

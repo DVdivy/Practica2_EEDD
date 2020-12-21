@@ -1,5 +1,6 @@
 #pragma once
 #include <stdlib.h>
+#include "Pedido.h"
 using namespace std;
 
 class Nodo_a_bin;
@@ -13,6 +14,12 @@ private:
 public:
     ABB();
     ~ABB();
-    void insertar(int n);
+    void insertar(Pedido* p);
     void mostrar_arbol(int);
+
+    void buscar_cliente(string cliente);
+    void mostrar_datos_preorden();
+    int altura();
+    int unidades_producto(string descripcion);
+    void mostrar_datos_VIP();
 };

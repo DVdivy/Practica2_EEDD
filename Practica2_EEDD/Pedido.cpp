@@ -96,7 +96,7 @@ bool Pedido::comprobar_pedido()
 void Pedido::arreglar_pedido() ///pide cambiar datos del pedido hasta que no haya datos erroneos
 {
     string eleccion;
-    bool correcto=false;
+    bool correcto = false;
     bool salir;
     while (!comprobar_pedido()){
         cout << "Estos son los datos del pedido erroneo, modifiquelos para que sea valido: " << endl;
@@ -113,6 +113,11 @@ void Pedido::arreglar_pedido() ///pide cambiar datos del pedido hasta que no hay
             for (int i=0 ; i<eleccion.size() && !salir; i++){
                 if (!(eleccion[i]>='0' && eleccion[i] <='9')){
                     cout << "Eleccion no valida, introduzca la eleccion de nuevo: " << endl;
+                    correcto = false;
+                    salir = true;
+                }
+                else if (stoi(eleccion)<0 || stoi(eleccion)>6) {
+                    cout << "Numero no valido, introduzca la eleccion de nuevo: " << endl;
                     correcto = false;
                     salir = true;
                 }
@@ -185,7 +190,6 @@ void Pedido::arreglar_pedido() ///pide cambiar datos del pedido hasta que no hay
             }
 
         default:
-            cout << "El numero introducido no es valido." << endl;
             correcto=false;
         }
     }
@@ -275,5 +279,12 @@ string Pedido::mostrar_pedido()
 		"\nDireccion: " + direccion +
 		"\nTipo de cliente: " + get_tipo_cliente_string() +
 		"\nNumero de tarjeta: " + numero_tarjeta +
+		"\nTiempo: " + to_string(tiempo);
+}
+
+string Pedido::mostrar_pedido_datos_pedido()
+{
+	return "\nDescricpion del articulo: " + descripcion_articulo +
+		"\nDireccion: " + direccion +
 		"\nTiempo: " + to_string(tiempo);
 }

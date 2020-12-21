@@ -18,5 +18,6 @@ public:
 	Pedido* ult();
 	bool es_vacia();
 	void mostrar_lista();
+	void mostrar_lista_datos_pedido();
 };
 

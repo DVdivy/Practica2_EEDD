@@ -154,3 +154,20 @@ void Lista::mostrar_lista()
 		cout << endl;
 	}
 }
+
+void Lista::mostrar_lista_datos_pedido()
+{
+	if (es_vacia())
+		cout << endl << "La lista esta vacia, no se puede mostrar" << endl;
+	else {
+		int c = 1;
+		Nodo* p = new Nodo();
+		p = primero;
+		while (p != nullptr) {
+			cout << endl <<"Pedido " << c << ": " << p->pedido->mostrar_pedido_datos_pedido() << endl;
+			p = p->sig;
+			c++;
+		}
+		cout << endl;
+	}
+}

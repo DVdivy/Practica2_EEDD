@@ -3,6 +3,7 @@
 #include "Cola.h"
 #include "Pila.h"
 #include "Pedido.h"
+#include "ABB.h"
 
 class Gestion
 {
@@ -12,6 +13,7 @@ private:
 	Lista* l_para_enviar1;
 	Lista* l_para_enviar2;
 	Pila* p_erroneos;
+	ABB* a_clientes;
 	int contador;
 	bool lista_selector;
 public:
@@ -25,6 +27,7 @@ public:
 	void enviar_pedido();
 	void mostrar_datos();
 	void simula_tiempo();
+	void opciones_arbol();
 
 
 	///GETTERS
