@@ -4,7 +4,7 @@
 #include <time.h>
 #include <fstream>
 
-Pedido* leer_pedido() ///recibe los datos del usuario y los almacena.
+Pedido* leer_pedido() ///recibe los datos del usuario y los almacena
 {
     string input;
     string parametros_pedido[6];
