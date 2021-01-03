@@ -97,7 +97,6 @@ int main() {
     arbol->insertar(p12);
 
     arbol->mostrar_arbol(0);*/
-
     srand(time(NULL));//Para que los tiempos aleatorios de los pedidos sean diferentes cada vez que se ejecuta el programa.
     string eleccion;
     bool correcto=false;
@@ -136,18 +135,27 @@ int main() {
             break;
         default:
             ///se instancias varios pedidos
-            Pedido* p1 = new Pedido ("Martillo",    "Andres",   "Jose Zorrilla 7",  Tipo_cliente::NVIP,              "780044545667");
-            Pedido* p2 = new Pedido ("Libro",       "Carlos",   "Perez Galdos 12",  Tipo_cliente::NR,             "780013456674");
-            Pedido* p3 = new Pedido ("Martillo",     "Julio",    "Calle Estrella 17",Tipo_cliente::NVIP,             "780678345667");
-            Pedido* p4 = new Pedido ("Mesa",        "Div9y",     "Calle Sol 71",     Tipo_cliente::NR,              "780453745667");
-            Pedido* p5 = new Pedido ("PS5",         "Padilla",  "Calle Luna 2",     Tipo_cliente::VIP,              "780044545667");
-            Pedido* p6 = new Pedido ("XBOX",        "Gsus",     "Calle Espacio 3",  Tipo_cliente::VIP,             "780013456676");
-            Pedido* p7 = new Pedido ("Martillo",     "divy",      "Calle Grande 7",   Tipo_cliente::VIP,             "780678345667");
-            Pedido* p8 = new Pedido ("PC",          "Hugo",     "Calle Blanca 9",   Tipo_cliente::NR,               "780453745667");
-            Pedido* p9 = new Pedido ("Pala",        "Alex",     "Calle Satelite 8", Tipo_cliente::VIP,              "780044545667");
-            Pedido* p10 = new Pedido("Deportivas",  "Mario",   "Calle Estrecha 10",Tipo_cliente::NVIP,              "78001345667");
-            Pedido* p11 = new Pedido("Cantimplora", "Ana",      "Calle Oscura 7",   Tipo_cliente::NVIP,             "780678345667");
-            Pedido* p12 = new Pedido("Auriculares", "Alfredo",  "Calle Jon 1",      Tipo_cliente::NR,               "780453745667");
+            Pedido* p1 = new Pedido ("Martillo",    "Andres",   "Jose Zorrilla 7",  Tipo_cliente::NVIP,     "780044545667");
+            Pedido* p2 = new Pedido ("Libro",       "Carlos",   "Perez Galdos 12",  Tipo_cliente::NR,       "780013456674");
+            Pedido* p3 = new Pedido ("Martillo",    "Julio",    "Calle Estrella 17",Tipo_cliente::NVIP,     "780678345667");
+            Pedido* p4 = new Pedido ("Mesa",        "Div9y",    "Calle Sol 71",     Tipo_cliente::NR,       "780453745667");
+            Pedido* p5 = new Pedido ("PS5",         "Padilla",  "Calle Luna 2",     Tipo_cliente::VIP,      "780044545667");
+            Pedido* p6 = new Pedido ("XBOX",        "Gsus",     "Calle Espacio 3",  Tipo_cliente::VIP,      "780013456676");
+            Pedido* p7 = new Pedido ("Martillo",    "divy",     "Calle Grande 7",   Tipo_cliente::VIP,      "780678345667");
+            Pedido* p8 = new Pedido ("PC",          "Hugo",     "Calle Blanca 9",   Tipo_cliente::NR,       "780453745667");
+            Pedido* p9 = new Pedido ("Pala",        "Alex",     "Calle Satelite 8", Tipo_cliente::VIP,      "780044545667");
+            Pedido* p10 = new Pedido("Deportivas",  "Mario",    "Calle Estrecha 10",Tipo_cliente::NVIP,     "78001345667");
+            Pedido* p11 = new Pedido("Cantimplora", "Ana",      "Calle Oscura 7",   Tipo_cliente::NVIP,     "780678345667");
+            Pedido* p12 = new Pedido("Auriculares", "Alfredo",  "Calle Jon 1",      Tipo_cliente::NR,       "780453745667");
+            Pedido* p13 = new Pedido("Estuche",     "Daniel",   "Calle Juela 13",   Tipo_cliente::NVIP,     "456967345345");
+            Pedido* p14 = new Pedido("Coche",       "Alberto",  "Calle Juela 3",    Tipo_cliente::VIP,      "456934573453");
+            Pedido* p15 = new Pedido("Patinete",    "Ruben",    "Federico Monpou 7",Tipo_cliente::VIP,      "867834532457");
+            Pedido* p16 = new Pedido("Switch",      "Marcos",   "Calle Bisbal 13",  Tipo_cliente::NR,       "654523452356");
+            Pedido* p17 = new Pedido("PS5",         "Miriam",   "Calle Guapa 17",   Tipo_cliente::NR,       "156345634634");
+            Pedido* p18 = new Pedido("I9",          "Gabriel",  "Calle Malasaña 1", Tipo_cliente::NVIP,     "235745785672");
+            Pedido* p19 = new Pedido("Pelota",      "Pedro",    "Calle Cita 32",    Tipo_cliente::VIP,      "535745721462");
+            Pedido* p20 = new Pedido("Galletas",    "Julio",    "Calle Vacia 2",    Tipo_cliente::NR,      "535745721462");
+
             ///se añaden a las colas que correspondan
             gestion->encolar(p1);
             gestion->encolar(p2);
@@ -161,6 +169,14 @@ int main() {
             gestion->encolar(p10);
             gestion->encolar(p11);
             gestion->encolar(p12);
+            gestion->encolar(p13);
+            gestion->encolar(p14);
+            gestion->encolar(p15);
+            gestion->encolar(p16);
+            gestion->encolar(p17);
+            gestion->encolar(p18);
+            gestion->encolar(p19);
+            gestion->encolar(p20);
             break;
     }
     gestion->simula_tiempo();

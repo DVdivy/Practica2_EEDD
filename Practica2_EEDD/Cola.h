@@ -13,5 +13,6 @@ public:
 	Pedido* prim();
 	bool es_vacia();
 	void mostrar_cola();
+	void mostrar_desc_cola();
 };
 

@@ -138,8 +138,23 @@ bool Lista::es_vacia()
 	return longitud == 0;
 }
 
-void Lista::mostrar_lista()
-{
+void Lista::mostrar_lista_desc(){
+    if (es_vacia())
+		cout << endl << "La lista esta vacia, no se puede mostrar" << endl;
+	else {
+		int c = 1;
+		Nodo* p = new Nodo();
+		p = primero;
+		while (p != nullptr) {
+			cout << endl <<"Pedido " << c << ": " << p->pedido->get_descripcion_articulo();
+			p = p->sig;
+			c++;
+		}
+		cout << endl;
+	}
+}
+
+void Lista::mostrar_lista(){
 	if (es_vacia())
 		cout << endl << "La lista esta vacia, no se puede mostrar" << endl;
 	else {

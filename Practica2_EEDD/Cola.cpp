@@ -48,8 +48,23 @@ bool Cola::es_vacia() {
 	return primero == nullptr;
 }
 
-void Cola::mostrar_cola()
-{
+void Cola::mostrar_desc_cola(){
+    if (es_vacia())
+		cout << endl << "La cola esta vacia. No se puede mostrar" << endl;
+	else {
+		int c = 1;
+		Nodo* p = new Nodo();
+		p = primero;
+		while (p != nullptr) {
+			cout << endl << "Pedido "<< c << ": " << p->pedido->get_descripcion_articulo();
+			p = p->sig;
+			c++;
+		}
+		cout << endl;
+	}
+}
+
+void Cola::mostrar_cola(){
 	if (es_vacia())
 		cout << endl << "La cola esta vacia. No se puede mostrar" << endl;
 	else {

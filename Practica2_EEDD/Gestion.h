@@ -16,6 +16,7 @@ private:
 	ABB* a_clientes;
 	int contador;
 	bool lista_selector;
+	void color(int x);
 public:
 	Gestion();
 	~Gestion();

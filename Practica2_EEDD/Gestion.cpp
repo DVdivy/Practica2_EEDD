@@ -2,6 +2,9 @@
 #include <iostream>
 #include <conio.h>
 #include <string.h>
+#include <stdio.h>
+#include <windows.h>
+
 
 using namespace std;
 
@@ -129,6 +132,7 @@ void Gestion::enlistar(Lista* lista_dada) ///añade los pedidos segun los criteri
     while (!enlistado && !(p_erroneos->es_vacia() && c_no_registrados->es_vacia() && c_registrados->es_vacia())){
         switch (contador){
             case 4:
+                //{
                 if (p_erroneos->es_vacia())
                     contador++;
                 else{
@@ -150,7 +154,9 @@ void Gestion::enlistar(Lista* lista_dada) ///añade los pedidos segun los criteri
                         contador++;
                 }
                 break;
+                //}
             case 5:
+                //{
                 if (c_no_registrados->es_vacia())
                     contador++;
                 else{
@@ -171,7 +177,9 @@ void Gestion::enlistar(Lista* lista_dada) ///añade los pedidos segun los criteri
                     c_no_registrados->desencolar();
                 }
                 break;
+                //}
             case 6:
+                //{
                 if (!p_erroneos->es_vacia()){
                     p_erroneos->cima()->arreglar_pedido();
                     lista_dada->add_prioridad(p_erroneos->cima());
@@ -187,7 +195,9 @@ void Gestion::enlistar(Lista* lista_dada) ///añade los pedidos segun los criteri
                 }
                 contador=1;
                 break;
+                //}
             default:
+                //{
                 if (c_registrados->es_vacia())
                     contador=4;
                 else{
@@ -208,6 +218,7 @@ void Gestion::enlistar(Lista* lista_dada) ///añade los pedidos segun los criteri
                     c_registrados->desencolar();
                 }
                 break;
+                //}
         }
     }
 }
@@ -215,22 +226,34 @@ void Gestion::enlistar(Lista* lista_dada) ///añade los pedidos segun los criteri
 void Gestion::enviar_pedido() ///eliminar el primer pedido de l_para_enviar1 y añade un nuevo pedido a la lista
 {
     l_para_enviar1->resto();
-    /*if (!p_erroneos->es_vacia() || !c_no_registrados->es_vacia() || !c_registrados->es_vacia()){
-        enlistar();
-    }*/
+}
+
+void Gestion::color(int x){
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),x);
 }
 
 void Gestion::mostrar_datos() { ///muestra todos los datos
-    cout << "----<COLA DE NO REGISTRADOS>----";
-    c_no_registrados->mostrar_cola();
+    color(6);
+    cout << endl << "----<COLA DE NO REGISTRADO>----";
+    color(14);
+    c_no_registrados->mostrar_desc_cola();
+    color(5);
     cout << endl << "----<COLA DE REGISTRADO>----";
-    c_registrados->mostrar_cola();
+    color(13);
+    c_registrados->mostrar_desc_cola();
+    color(1);
     cout << endl << "----<LISTA DE LISTO PARA ENVIAR 1>----";
-    l_para_enviar1->mostrar_lista();
+    color(9);
+    l_para_enviar1->mostrar_lista_desc();
+    color(3);
     cout << endl << "----<LISTA DE LISTO PARA ENVIAR 2>----";
-    l_para_enviar2->mostrar_lista();
+    color(11);
+    l_para_enviar2->mostrar_lista_desc();
+    color(4);
     cout << endl << "----<PILA DE ERRONEOS>----";
-    p_erroneos->mostrar_pila();
+    color(12);
+    p_erroneos->mostrar_desc_pila();
+    color(7);
 }
 
 void Gestion::simula_tiempo() ///funcion principal del programa, establece el orden en que se invocan las funciones y simula el paso del tiempo
@@ -240,26 +263,20 @@ void Gestion::simula_tiempo() ///funcion principal del programa, establece el or
     int minutos2=0;
     bool enviando1 = false;
     bool enviando2 = false;
-    cout
-    << "\n\n\n############ Asi se encuentra la"
-    << " estructura al inicio de la ejecucion ############"
-    << endl;
+    cout<< "\n\n\n############ Asi se encuentra la"
+    << " estructura al inicio de la ejecucion ############"<< endl;
 
     mostrar_datos();
 
-    cout
-    << "############ Introducimos los primeros 4"
-    << " pedidos a la lista de pedidos para enviar ############"
-    << endl;
+    cout<< "############ Introducimos los primeros 4"
+    << " pedidos a la lista de pedidos para enviar ############"<< endl;
 
     if(!c_registrados->es_vacia() || !c_no_registrados->es_vacia())
         enlistar_inicial();
     mostrar_datos();
 
-    cout
-    << "############ A partir de aqui se van introduciendo los pedido a la lista"
-    << " de listos para enviar segun los pedidos van estando preparados ############"
-    << endl;
+    cout<< "############ A partir de aqui se van introduciendo los pedido a la lista"
+    << " de listos para enviar segun los pedidos van estando preparados ############"<< endl;
 
     while (enviando1 || enviando2
            || !l_para_enviar1->es_vacia() || !l_para_enviar2->es_vacia()
@@ -288,13 +305,12 @@ void Gestion::simula_tiempo() ///funcion principal del programa, establece el or
                 if (minutos1 < p->get_tiempo())
                     cout << "Han pasado: " << minutos1
                     << " minutos desde el envio del ultimo pedido de la lista 1."
-                    << " El proximo pedido de la lista 1 necesita: " << p->get_tiempo()
-                    << endl;
+                    << " El proximo pedido de la lista 1 necesita: " << p->get_tiempo()<< endl;
+
                 if (minutos1 == p->get_tiempo())
                     cout
                     << "HAN PASADO " << minutos1 << " MINUTOS, PEDIDO DE LA LISTA 1 ENVIADO."
-                    << "\n\n############ Esta es la estructura despues de haber enviado el pedido ############"
-                    << endl;
+                    << "\n\n############ Esta es la estructura despues de haber enviado el pedido ############"<< endl;
 
                 if (minutos_gestion1 % 2 == 0) {
                     if (lista_selector)
@@ -304,7 +320,6 @@ void Gestion::simula_tiempo() ///funcion principal del programa, establece el or
                 }
 
                 if (minutos1 == p->get_tiempo()) {
-                    //l_para_enviar1->resto(); //enviamos pedido
                     a_clientes->insertar(p); //Metiendo el cliente en el arbol
                     mostrar_datos();
                     minutos1=0;
@@ -321,6 +336,7 @@ void Gestion::simula_tiempo() ///funcion principal del programa, establece el or
                 }
                 if (minutos2 < p2->get_tiempo())
                     cout << "Han pasado: " << minutos2 << " minutos desde el envio del ultimo pedido de la lista 2. El proximo pedido de la lista 2 necesita: " << p2->get_tiempo() << endl;
+
                 if (minutos2 == p2->get_tiempo())
                     cout << "HAN PASADO " << minutos2 << " MINUTOS, PEDIDO DE LA LISTA 2 ENVIADO.\n\n############ Esta es la estructura despues de haber enviado el pedido ############" << endl;
 
@@ -379,46 +395,58 @@ void Gestion::opciones_arbol()
 
         switch (stoi(eleccion)) {
             case 1:
+                //{
                 {
-                    string nombre;
-                    cout << "Escriba el nombre del cliente que quiere buscar: " << endl;
-                    cin.ignore();
-                    getline(cin, nombre);
-                    a_clientes->buscar_cliente(nombre);
-                    correcto = false;
-                    break;
+                string nombre;
+                cout << "Escriba el nombre del cliente que quiere buscar: " << endl;
+                cin.ignore();
+                getline(cin, nombre);
+                a_clientes->buscar_cliente(nombre);
+                correcto = false;
+                break;
                 }
+                //}
+
             case 2:
+                //{
                 a_clientes->mostrar_datos_preorden();
                 correcto = false;
                 break;
+                //}
             case 3:
+                //{
                 cout << "La altura del arbol es: " << a_clientes->altura() << endl << endl;
                 a_clientes->altura();
                 correcto = false;
                 break;
+                //}
             case 4:
+                //{
                 {
-                    string descripcion;
-                    cout << "Escriba la descripcion del producto que quiere buscar: " << endl;
-                    cin.ignore();
-                    getline(cin, descripcion);
-                    cout << "Se han vendido " << a_clientes->unidades_producto(descripcion) << " unidades." << endl << endl;
-                    correcto = false;
-                    break;
+                string descripcion;
+                cout << "Escriba la descripcion del producto que quiere buscar: " << endl;
+                cin.ignore();
+                getline(cin, descripcion);
+                cout << "Se han vendido " << a_clientes->unidades_producto(descripcion) << " unidades." << endl << endl;
+                correcto = false;
+                break;
                 }
+                //}
             case 5:
+                //{
                 a_clientes->mostrar_datos_VIP();
                 correcto = false;
                 break;
+                //}
             case 6:
+                //{
                 correcto = false;
                 fin_programa = true;
                 cout << "FIN DEL PROGRAMA." << endl;
                 break;
+                //}
             default:
                 correcto = false;
-
         }
     }
 }

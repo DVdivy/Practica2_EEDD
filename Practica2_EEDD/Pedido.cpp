@@ -127,68 +127,81 @@ void Pedido::arreglar_pedido() ///pide cambiar datos del pedido hasta que no hay
         }
         switch(stoi(eleccion)){
         case 0:
+            //{
             correcto=false;
             break;
+            //}
         case 1:
+            //{
             {
-                string _descripcion;
-                cout << "Introduzca la nueva descripcion (no hay restricciones): " << endl;
-                cin.ignore();
-                getline(cin,_descripcion);
-                set_descripcion_articulo(_descripcion);
-                correcto=false;
-                break;
+            string _descripcion;
+            cout << "Introduzca la nueva descripcion (no hay restricciones): " << endl;
+            cin.ignore();
+            getline(cin,_descripcion);
+            set_descripcion_articulo(_descripcion);
+            correcto=false;
+            break;
             }
+            //}
         case 2:
+            //{
             {
-                string _nombre;
-                cout << "Introduzca el nuevo nombre (solo letras y espacios): " << endl;
-                cin.ignore();
-                getline(cin,_nombre);
-                set_nombre_cliente(_nombre);
-                correcto=false;
-                break;
+            string _nombre;
+            cout << "Introduzca el nuevo nombre (solo letras y espacios): " << endl;
+            cin.ignore();
+            getline(cin,_nombre);
+            set_nombre_cliente(_nombre);
+            correcto=false;
+            break;
             }
+            //}
         case 3:
+            //{
             {
-                string _direccion;
-                cout << "Introduzca la nueva direccion (Solo puede contener letras numeros y espacios): " << endl;
-                cin.ignore();
-                getline(cin,_direccion);
-                set_direccion(_direccion);
-                correcto=false;
-                break;
+            string _direccion;
+            cout << "Introduzca la nueva direccion (Solo puede contener letras numeros y espacios): " << endl;
+            cin.ignore();
+            getline(cin,_direccion);
+            set_direccion(_direccion);
+            correcto=false;
+            break;
             }
+            //}
         case 4:
+            //{
             {
-                string _tipo;
-                cout << "Introduzca el nuevo tipo de cliente (no hay restricciones): " << endl; //si pone algo sin sentido se considera NR
-                cin.ignore();
-                getline(cin,_tipo);
-                set_tipo_cliente(_tipo);
-                correcto=false;
-                break;
+            string _tipo;
+            cout << "Introduzca el nuevo tipo de cliente (no hay restricciones): " << endl; //si pone algo sin sentido se considera NR
+            cin.ignore();
+            getline(cin,_tipo);
+            set_tipo_cliente(_tipo);
+            correcto=false;
+            break;
             }
+            //}
         case 5:
+            //{
             {
-                string _numero;
-                cout << "Introduzca el nuevo numero de tarjeta (12 numeros): " << endl;
-                cin.ignore();
-                getline(cin,_numero);
-                set_numero_tarjeta(_numero);
-                correcto=false;
-                break;
+            string _numero;
+            cout << "Introduzca el nuevo numero de tarjeta (12 numeros): " << endl;
+            cin.ignore();
+            getline(cin,_numero);
+            set_numero_tarjeta(_numero);
+            correcto=false;
+            break;
             }
+            //}
         case 6:
+            //{
             {
-                int _tiempo;
-                cout << "Introduzca el nuevo tiempo (numero del 1 al 10, incluidos): " << endl;
-                cin >> _tiempo;
-                set_tiempo(_tiempo);
-                correcto=false;
-                break;
+            int _tiempo;
+            cout << "Introduzca el nuevo tiempo (numero del 1 al 10, incluidos): " << endl;
+            cin >> _tiempo;
+            set_tiempo(_tiempo);
+            correcto=false;
+            break;
             }
-
+            //}
         default:
             correcto=false;
         }

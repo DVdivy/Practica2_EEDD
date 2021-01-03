@@ -11,5 +11,6 @@ public:
 	void desapilar();
 	Pedido* cima();
 	bool es_vacia();
+	void mostrar_desc_pila();
 	void mostrar_pila();
 };

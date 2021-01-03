@@ -2,11 +2,8 @@
 #include <string>
 using namespace std;
 
-enum Tipo_cliente {
-	VIP,
-	NVIP,
-	NR
-};
+enum Tipo_cliente {VIP,NVIP,NR};
+
 class Pedido
 {
 private:

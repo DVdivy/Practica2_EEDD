@@ -64,6 +64,21 @@ bool Pila::es_vacia()
 	return primero == nullptr;
 }
 
+void Pila::mostrar_desc_pila(){
+    if (es_vacia())
+		cout << endl << "La pila esta vacia. No se puede mostrar" << endl << endl << endl;
+	else {
+		int c = 1;
+		Nodo* p = new Nodo();
+		p = primero;
+		while (p != nullptr) {
+			cout << endl << "Pedido " << c << ": " << p->pedido->get_descripcion_articulo() << endl;
+			p = p->sig;
+			c++;
+		}
+		cout << endl;
+	}
+}
 void Pila::mostrar_pila()
 {
 	if (es_vacia())
