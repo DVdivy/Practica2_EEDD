@@ -72,11 +72,11 @@ void Pila::mostrar_desc_pila(){
 		Nodo* p = new Nodo();
 		p = primero;
 		while (p != nullptr) {
-			cout << endl << "Pedido " << c << ": " << p->pedido->get_descripcion_articulo() << endl;
+			cout << endl << "Pedido " << c << ": " << p->pedido->get_descripcion_articulo();
 			p = p->sig;
 			c++;
 		}
-		cout << endl;
+		cout << endl << endl;
 	}
 }
 void Pila::mostrar_pila()
@@ -88,7 +88,7 @@ void Pila::mostrar_pila()
 		Nodo* p = new Nodo();
 		p = primero;
 		while (p != nullptr) {
-			cout << endl << "Pedido " << c << ": " << p->pedido->mostrar_pedido() << endl;
+			cout << "Pedido " << c << ": " << p->pedido->mostrar_pedido() << endl;
 			p = p->sig;
 			c++;
 		}
