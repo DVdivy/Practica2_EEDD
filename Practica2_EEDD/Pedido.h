@@ -13,6 +13,7 @@ private:
 	Tipo_cliente tipo_cliente;
 	string numero_tarjeta;
 	int tiempo;
+	void color(int x);
 public:
 	Pedido(); ///Constructor vacio con tiempo aleatorio
 	Pedido(string descripcion_articulo, string nombre_cliente, string direccion,

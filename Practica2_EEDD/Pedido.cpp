@@ -4,6 +4,7 @@
 #include <iostream>
 #include <conio.h>
 #include <string.h>
+#include <windows.h>
 
 using namespace std;
 
@@ -92,32 +93,36 @@ bool Pedido::comprobar_pedido()
         return true;
     return false;
 }
-
+void Pedido::color(int x){
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),x);
+}
 void Pedido::arreglar_pedido() ///pide cambiar datos del pedido hasta que no haya datos erroneos
 {
     string eleccion;
     bool correcto = false;
     bool salir;
     while (!comprobar_pedido()){
-        cout << "Estos son los datos del pedido erroneo, modifiquelos para que sea valido: " << endl;
-        cout << "1 Descripcion: " << descripcion_articulo << endl;
-        cout << "2 Nombre: " << nombre_cliente << endl;
-        cout << "3 Direccion: " << direccion << endl;
-        cout << "4 Tipo de cliente: " << get_tipo_cliente_string() << endl;
-        cout << "5 Numero de tarjeta: " << numero_tarjeta << endl;
-        cout << "6 Tiempo: " << tiempo << endl;
-        cout << "Elija el numero del campo que desea cambiar (elija 0 si no desea cambiar nada mas): " << endl;
+        color(4);
+        cout << "║                             ║ Estos son los datos del pedido erroneo, modifiquelos para que sea valido: " << endl;
+        cout << "║                             ║ 1. Descripcion: " << descripcion_articulo << endl;
+        cout << "║                             ║ 2. Nombre: " << nombre_cliente << endl;
+        cout << "║                             ║ 3. Direccion: " << direccion << endl;
+        cout << "║                             ║ 4. Tipo de cliente: " << get_tipo_cliente_string() << endl;
+        cout << "║       PEDIDO ERRONEO        ║ 5. Numero de tarjeta: " << numero_tarjeta << endl;
+        cout << "║                             ║ 6. Tiempo: " << tiempo << endl;
+        cout << "║                             ║ Elija el numero del campo que desea cambiar (elija 0 si no desea cambiar nada mas): " << endl;
         while (!correcto){
+            cout << "║                             ║ ";
             cin >> eleccion;
             salir = false;
             for (int i=0 ; i<eleccion.size() && !salir; i++){
                 if (!(eleccion[i]>='0' && eleccion[i] <='9')){
-                    cout << "Eleccion no valida, introduzca la eleccion de nuevo: " << endl;
+                    cout << "║                             ║ Eleccion no valida, introduzca la eleccion de nuevo: " << endl;
                     correcto = false;
                     salir = true;
                 }
                 else if (stoi(eleccion)<0 || stoi(eleccion)>6) {
-                    cout << "Numero no valido, introduzca la eleccion de nuevo: " << endl;
+                    cout << "║                             ║ Numero no valido, introduzca la eleccion de nuevo: " << endl;
                     correcto = false;
                     salir = true;
                 }
@@ -135,8 +140,9 @@ void Pedido::arreglar_pedido() ///pide cambiar datos del pedido hasta que no hay
             //{
             {
             string _descripcion;
-            cout << "Introduzca la nueva descripcion (no hay restricciones): " << endl;
+            cout << "║                             ║ Introduzca la nueva descripcion (no hay restricciones): " << endl;
             cin.ignore();
+            cout << "║                             ║ → ";
             getline(cin,_descripcion);
             set_descripcion_articulo(_descripcion);
             correcto=false;
@@ -147,8 +153,9 @@ void Pedido::arreglar_pedido() ///pide cambiar datos del pedido hasta que no hay
             //{
             {
             string _nombre;
-            cout << "Introduzca el nuevo nombre (solo letras y espacios): " << endl;
+            cout << "║                             ║ Introduzca el nuevo nombre (solo letras y espacios): " << endl;
             cin.ignore();
+            cout << "║                             ║ → ";
             getline(cin,_nombre);
             set_nombre_cliente(_nombre);
             correcto=false;
@@ -159,8 +166,9 @@ void Pedido::arreglar_pedido() ///pide cambiar datos del pedido hasta que no hay
             //{
             {
             string _direccion;
-            cout << "Introduzca la nueva direccion (Solo puede contener letras numeros y espacios): " << endl;
+            cout << "║                             ║ Introduzca la nueva direccion (Solo puede contener letras numeros y espacios): " << endl;
             cin.ignore();
+            cout << "║                             ║ → ";
             getline(cin,_direccion);
             set_direccion(_direccion);
             correcto=false;
@@ -171,8 +179,9 @@ void Pedido::arreglar_pedido() ///pide cambiar datos del pedido hasta que no hay
             //{
             {
             string _tipo;
-            cout << "Introduzca el nuevo tipo de cliente (no hay restricciones): " << endl; //si pone algo sin sentido se considera NR
+            cout << "║                             ║ Introduzca el nuevo tipo de cliente (no hay restricciones): " << endl; //si pone algo sin sentido se considera NR
             cin.ignore();
+            cout << "║                             ║ → ";
             getline(cin,_tipo);
             set_tipo_cliente(_tipo);
             correcto=false;
@@ -183,8 +192,9 @@ void Pedido::arreglar_pedido() ///pide cambiar datos del pedido hasta que no hay
             //{
             {
             string _numero;
-            cout << "Introduzca el nuevo numero de tarjeta (12 numeros): " << endl;
+            cout << "║                             ║ Introduzca el nuevo numero de tarjeta (12 numeros): " << endl;
             cin.ignore();
+            cout << "║                             ║ → ";
             getline(cin,_numero);
             set_numero_tarjeta(_numero);
             correcto=false;
@@ -195,7 +205,8 @@ void Pedido::arreglar_pedido() ///pide cambiar datos del pedido hasta que no hay
             //{
             {
             int _tiempo;
-            cout << "Introduzca el nuevo tiempo (numero del 1 al 10, incluidos): " << endl;
+            cout << "║                             ║ Introduzca el nuevo tiempo (numero del 1 al 10, incluidos): " << endl;
+            cout << "║                             ║ → ";
             cin >> _tiempo;
             set_tiempo(_tiempo);
             correcto=false;
@@ -206,6 +217,8 @@ void Pedido::arreglar_pedido() ///pide cambiar datos del pedido hasta que no hay
             correcto=false;
         }
     }
+    color(7);
+    cout << "╠═════════════════════════════╣ " << endl;
 }
 
 string Pedido::get_descripcion_articulo() const

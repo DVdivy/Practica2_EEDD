@@ -140,17 +140,10 @@ void Gestion::enlistar(Lista* lista_dada) ///añade los pedidos segun los criter
                     contador++;
                 else{
                     if (p_erroneos->cima()->get_tipo_cliente()!= NR){
-                        color(4);
                         p_erroneos->cima()->arreglar_pedido();
-                        color(7);
                         lista_dada->add_prioridad(p_erroneos->cima());
 
                         pedido_insertado(p_erroneos->cima());
-
-                        //cout << "\t\t>>>>>>>>>>>>>>>> Insertado nuevo pedido a la lista ("
-                        //<< p_erroneos->cima()->get_descripcion_articulo() << ", del cliente "
-                        //<< p_erroneos->cima()->get_nombre_cliente() << ")<<<<<<<<<<<<<<<<<<<"
-                        //<< endl;
 
                         p_erroneos->desapilar();
                         cambiar_lista();
@@ -172,11 +165,6 @@ void Gestion::enlistar(Lista* lista_dada) ///añade los pedidos segun los criter
 
                         pedido_insertado(c_no_registrados->prim());
 
-                        //cout << "\t\t>>>>>>>>>>>>>>>> Insertado nuevo pedido a la lista ("
-                        //<< c_no_registrados->prim()->get_descripcion_articulo() << ", del cliente "
-                        //<< c_no_registrados->prim()->get_nombre_cliente() << ")<<<<<<<<<<<<<<<<<<<"
-                        //<< endl;
-
                         cambiar_lista();
                         contador=1;
                         enlistado=true;
@@ -190,17 +178,10 @@ void Gestion::enlistar(Lista* lista_dada) ///añade los pedidos segun los criter
             case 6:
                 //{
                 if (!p_erroneos->es_vacia()){
-                    color(4);
                     p_erroneos->cima()->arreglar_pedido();
-                    color(7);
                     lista_dada->add_prioridad(p_erroneos->cima());
 
                     pedido_insertado(p_erroneos->cima());
-
-                    //cout << "\t\t>>>>>>>>>>>>>>>> Insertado nuevo pedido a la lista ("
-                    //<< p_erroneos->cima()->get_descripcion_articulo() << ", del cliente "
-                    //<< p_erroneos->cima()->get_nombre_cliente() << ")<<<<<<<<<<<<<<<<<<<<"
-                    //<< endl;
 
                     cambiar_lista();
                     p_erroneos->desapilar();
@@ -219,11 +200,6 @@ void Gestion::enlistar(Lista* lista_dada) ///añade los pedidos segun los criter
 
 
                         pedido_insertado(c_registrados->prim());
-
-                        //cout << "\t\t>>>>>>>>>>>>>>>> Insertado nuevo pedido a la lista ("
-                        //<< c_registrados->prim()->get_descripcion_articulo() << ", del cliente "
-                        //<< c_registrados->prim()->get_nombre_cliente() << ")<<<<<<<<<<<<<<<<<"
-                        //<< endl;
 
                         cambiar_lista();
                         contador++;
@@ -290,30 +266,29 @@ void Gestion::mensaje(Tipo_mensaje m) {
     case TODOS_ERRONEOS:
         cout << "Los pedidos son todos erroneos, enviando a la lista el primero de la pila de erroneos" << endl;
         break;
-    case DESPUES_DE_ENVIAR_PEDIDO:
-        cout << "\n############ Esta es la estructura despues de haber enviado el pedido ############"<< endl;
     }
 }
 void Gestion::cabecera(int tiempo_general) {
-    color(10);
     cout << "╔══════════════╦══════════════╗" << endl;
     cout << "║    LISTA 1   ║    LISTA 2   ║" << endl;
     if (tiempo_general % 2 == 1)
         cout << "╠══════════════╩══════════════╣" << endl;
     else
         cout << "╠══════════════╬══════════════╣" << endl;
-    color(7);
 }
 
 void Gestion::pedido_insertado(Pedido* p) {
-    cout << "║      PEDIDO INSERTADO       ║" << "Minuto " << minutos_gestion << endl;
+    cout << "║      PEDIDO INSERTADO       ║" << "→ Minuto " << minutos_gestion << endl;
     cout << "║      " << p->get_descripcion_articulo();
     //const char* str = (const char*)p->get_descripcion_articulo();
     for (int i=0; i<22-p->get_descripcion_articulo().length()+1; i++) {
         cout << " ";
     }
     cout << "║" << endl;
-    cout << "╠══════════════╦══════════════╣" << endl;
+    if (lista_selector)
+        cout << "╠═════════════════════════════╣" << endl;
+    else
+        cout << "╠══════════════╦══════════════╣" << endl;
 }
 
 void Gestion::progreso(int tiempo_general, int minutos1, int minutos2, Pedido* p1, Pedido* p2) {
@@ -325,11 +300,11 @@ void Gestion::progreso(int tiempo_general, int minutos1, int minutos2, Pedido* p
         cout << "║    "<< int(float(minutos1)/p1->get_tiempo() * 100) << "%       ";
 
     if (minutos2 == 0)
-        cout << "║    ENVIADO   ║" << "Minuto " << minutos_gestion << endl;
+        cout << "║    ENVIADO   ║" << "→ Minuto " << minutos_gestion << endl;
     else if (!enviando2 && l_para_enviar2->es_vacia())
-        cout << "║  ----------  ║" << "Minuto " << minutos_gestion << endl;
+        cout << "║  ----------  ║" << "→ Minuto " << minutos_gestion << endl;
     else if (float(minutos2) / p2->get_tiempo() != 1)
-        cout << "║    "<< int(float(minutos2)/p2->get_tiempo() * 100) << "%       ║" << "Minuto " << minutos_gestion << endl;
+        cout << "║    "<< int(float(minutos2)/p2->get_tiempo() * 100) << "%       ║" << "→ Minuto " << minutos_gestion << endl;
     if (tiempo_general % 2 == 1)
         cout << "╠══════════════╩══════════════╣" << endl;
     else

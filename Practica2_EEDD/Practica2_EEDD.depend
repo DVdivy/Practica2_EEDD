@@ -10,7 +10,7 @@
 	<iostream>
 	"Pedido.h"
 
-1609695312 c:\users\david\documents\github\practica2_eedd\practica2_eedd\pedido.h
+1610041344 c:\users\david\documents\github\practica2_eedd\practica2_eedd\pedido.h
 	<string>
 
 1609695312 source:c:\users\david\documents\github\practica2_eedd\practica2_eedd\lista.cpp
@@ -30,7 +30,7 @@
 1609695312 c:\users\david\documents\github\practica2_eedd\practica2_eedd\pila.h
 	"Nodo.h"
 
-1610037224 source:c:\users\david\documents\github\practica2_eedd\practica2_eedd\gestion.cpp
+1610042923 source:c:\users\david\documents\github\practica2_eedd\practica2_eedd\gestion.cpp
 	"Gestion.h"
 	<iostream>
 	<conio.h>
@@ -38,20 +38,21 @@
 	<stdio.h>
 	<windows.h>
 
-1610039239 c:\users\david\documents\github\practica2_eedd\practica2_eedd\gestion.h
+1610042451 c:\users\david\documents\github\practica2_eedd\practica2_eedd\gestion.h
 	"Lista.h"
 	"Cola.h"
 	"Pila.h"
 	"Pedido.h"
 	"ABB.h"
 
-1610037772 source:c:\users\david\documents\github\practica2_eedd\practica2_eedd\pedido.cpp
+1610042418 source:c:\users\david\documents\github\practica2_eedd\practica2_eedd\pedido.cpp
 	"Pedido.h"
 	<stdlib.h>
 	<time.h>
 	<iostream>
 	<conio.h>
 	<string.h>
+	<windows.h>
 
 1610037481 source:c:\users\david\documents\github\practica2_eedd\practica2_eedd\main.cpp
 	"Gestion.h"
