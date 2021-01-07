@@ -25,9 +25,9 @@ private:
 
 	void color(int x);
 	void mensaje(Tipo_mensaje m);
-	void cabecera();
-	void progreso(int minutos1, int minutos2, Pedido* p, Pedido* p2);
-	void pedido_insertado();
+	void cabecera(int minutos_gestion);
+	void progreso(int tiempo_general, int minutos1, int minutos2, Pedido* p, Pedido* p2);
+	void pedido_insertado(Pedido* p);
 public:
 	Gestion();
 	~Gestion();

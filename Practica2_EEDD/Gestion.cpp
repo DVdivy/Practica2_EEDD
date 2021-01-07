@@ -129,7 +129,7 @@ void Gestion::enlistar_inicial() ///mete los primeros 4 pedidos (en caso de habe
     }
 }
 
-void Gestion::enlistar(Lista* lista_dada) ///a�ade los pedidos segun los criterios establecidos por la practica
+void Gestion::enlistar(Lista* lista_dada) ///añade los pedidos segun los criterios establecidos por la practica
 {
     bool enlistado=false;
     while (!enlistado && !(p_erroneos->es_vacia() && c_no_registrados->es_vacia() && c_registrados->es_vacia())){
@@ -140,10 +140,12 @@ void Gestion::enlistar(Lista* lista_dada) ///a�ade los pedidos segun los criteri
                     contador++;
                 else{
                     if (p_erroneos->cima()->get_tipo_cliente()!= NR){
+                        color(4);
                         p_erroneos->cima()->arreglar_pedido();
+                        color(7);
                         lista_dada->add_prioridad(p_erroneos->cima());
 
-                        pedido_insertado();
+                        pedido_insertado(p_erroneos->cima());
 
                         //cout << "\t\t>>>>>>>>>>>>>>>> Insertado nuevo pedido a la lista ("
                         //<< p_erroneos->cima()->get_descripcion_articulo() << ", del cliente "
@@ -168,7 +170,7 @@ void Gestion::enlistar(Lista* lista_dada) ///a�ade los pedidos segun los criteri
                     if (c_no_registrados->prim()->comprobar_pedido()){
                         lista_dada->add_prioridad(c_no_registrados->prim());
 
-                        pedido_insertado();
+                        pedido_insertado(c_no_registrados->prim());
 
                         //cout << "\t\t>>>>>>>>>>>>>>>> Insertado nuevo pedido a la lista ("
                         //<< c_no_registrados->prim()->get_descripcion_articulo() << ", del cliente "
@@ -188,10 +190,12 @@ void Gestion::enlistar(Lista* lista_dada) ///a�ade los pedidos segun los criteri
             case 6:
                 //{
                 if (!p_erroneos->es_vacia()){
+                    color(4);
                     p_erroneos->cima()->arreglar_pedido();
+                    color(7);
                     lista_dada->add_prioridad(p_erroneos->cima());
 
-                    pedido_insertado();
+                    pedido_insertado(p_erroneos->cima());
 
                     //cout << "\t\t>>>>>>>>>>>>>>>> Insertado nuevo pedido a la lista ("
                     //<< p_erroneos->cima()->get_descripcion_articulo() << ", del cliente "
@@ -214,7 +218,7 @@ void Gestion::enlistar(Lista* lista_dada) ///a�ade los pedidos segun los criteri
                         lista_dada->add_prioridad(c_registrados->prim());
 
 
-                        pedido_insertado();
+                        pedido_insertado(c_registrados->prim());
 
                         //cout << "\t\t>>>>>>>>>>>>>>>> Insertado nuevo pedido a la lista ("
                         //<< c_registrados->prim()->get_descripcion_articulo() << ", del cliente "
@@ -290,32 +294,46 @@ void Gestion::mensaje(Tipo_mensaje m) {
         cout << "\n############ Esta es la estructura despues de haber enviado el pedido ############"<< endl;
     }
 }
-void Gestion::cabecera() {
-    cout << "|=============================|" << endl;
-    cout << "|    LISTA 1   |    LISTA 2   |" << endl;
-    cout << "|=============================|" << endl;
+void Gestion::cabecera(int tiempo_general) {
+    color(10);
+    cout << "╔══════════════╦══════════════╗" << endl;
+    cout << "║    LISTA 1   ║    LISTA 2   ║" << endl;
+    if (tiempo_general % 2 == 1)
+        cout << "╠══════════════╩══════════════╣" << endl;
+    else
+        cout << "╠══════════════╬══════════════╣" << endl;
+    color(7);
 }
 
-void Gestion::pedido_insertado() {
-    cout << "|        PEDIDO INSERTADO     |" << "Minuto " << minutos_gestion << endl;
-    cout << "|-----------------------------|" << endl;
+void Gestion::pedido_insertado(Pedido* p) {
+    cout << "║      PEDIDO INSERTADO       ║" << "Minuto " << minutos_gestion << endl;
+    cout << "║      " << p->get_descripcion_articulo();
+    //const char* str = (const char*)p->get_descripcion_articulo();
+    for (int i=0; i<22-p->get_descripcion_articulo().length()+1; i++) {
+        cout << " ";
+    }
+    cout << "║" << endl;
+    cout << "╠══════════════╦══════════════╣" << endl;
 }
 
-void Gestion::progreso(int minutos1, int minutos2, Pedido* p1, Pedido* p2) {
+void Gestion::progreso(int tiempo_general, int minutos1, int minutos2, Pedido* p1, Pedido* p2) {
     if(minutos1 == 0)
-        cout << "|    ENVIADO   ";
+        cout << "║    ENVIADO   ";
     else if (!enviando1 && l_para_enviar1->es_vacia())
-        cout << "|  ----------  ";
+        cout << "║  ----------  ";
     else if(float(minutos1) / p1->get_tiempo() != 1)
-        cout << "|    "<< int(float(minutos1)/p1->get_tiempo() * 100) << "%       ";
+        cout << "║    "<< int(float(minutos1)/p1->get_tiempo() * 100) << "%       ";
 
     if (minutos2 == 0)
-        cout << "|    ENVIADO   |" << "Minuto " << minutos_gestion << endl;
+        cout << "║    ENVIADO   ║" << "Minuto " << minutos_gestion << endl;
     else if (!enviando2 && l_para_enviar2->es_vacia())
-        cout << "|  ----------  |" << "Minuto " << minutos_gestion << endl;
+        cout << "║  ----------  ║" << "Minuto " << minutos_gestion << endl;
     else if (float(minutos2) / p2->get_tiempo() != 1)
-        cout << "|    "<< int(float(minutos2)/p2->get_tiempo() * 100) << "%       |" << "Minuto " << minutos_gestion << endl;
-    cout << "|-----------------------------|" << endl;
+        cout << "║    "<< int(float(minutos2)/p2->get_tiempo() * 100) << "%       ║" << "Minuto " << minutos_gestion << endl;
+    if (tiempo_general % 2 == 1)
+        cout << "╠══════════════╩══════════════╣" << endl;
+    else
+        cout << "╠══════════════╬══════════════╣" << endl;
 }
 
 void Gestion::simula_tiempo() ///funcion principal del programa, establece el orden en que se invocan las funciones y simula el paso del tiempo
@@ -335,7 +353,7 @@ void Gestion::simula_tiempo() ///funcion principal del programa, establece el or
     mostrar_datos();
     mensaje(COMIENZA_EL_PROCESO);
 
-    cabecera();
+    cabecera(minutos_gestion);
     Pedido* p;
     Pedido* p2;
     while (enviando1 || enviando2
@@ -396,11 +414,11 @@ void Gestion::simula_tiempo() ///funcion principal del programa, establece el or
                 }
             }
 
-            progreso(minutos1, minutos2, p, p2);
+            progreso(minutos_gestion, minutos1, minutos2, p, p2);
             if ((minutos1 == 0 || minutos2 == 0)) {
                 mostrar_datos();
                 if (!l_para_enviar1->es_vacia() || !l_para_enviar2->es_vacia() || enviando1 || enviando2)
-                    cabecera();
+                    cabecera(minutos_gestion);
             }
 
 
@@ -418,11 +436,11 @@ void Gestion::opciones_arbol()
     while(!fin_programa) {
         string eleccion;
         cout << "Seleccione una de las siguientes opciones:" << endl;
-        cout << "1: Buscar un cliente en el abb de env�os, dado su nombre, y mostrar los datos de todos los pedidos del mismo." << endl;
-        cout << "2: Mostrar los datos de los clientes y sus pedidos recorriendo el abb de env�os en preorden." << endl;
-        cout << "3: Calcular la altura del abb de env�os creado." << endl;
-        cout << "4: Calcular cuantas unidades de un producto se han vendido, dada la descripci�n del mismo." << endl;
-        cout << "5: Mostrar los datos de clientes VIP del abb de env�os, ordenados alfab�ticamente por el nombre del cliente." << endl;
+        cout << "1: Buscar un cliente en el abb de envíos, dado su nombre, y mostrar los datos de todos los pedidos del mismo." << endl;
+        cout << "2: Mostrar los datos de los clientes y sus pedidos recorriendo el abb de envíos en preorden." << endl;
+        cout << "3: Calcular la altura del abb de envíos creado." << endl;
+        cout << "4: Calcular cuantas unidades de un producto se han vendido, dada la descripción del mismo." << endl;
+        cout << "5: Mostrar los datos de clientes VIP del abb de envíos, ordenados alfabéticamente por el nombre del cliente." << endl;
         cout << "6: Salir del sistema." << endl;
         while (!correcto){
             cin >> eleccion;

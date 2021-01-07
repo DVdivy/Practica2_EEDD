@@ -67,6 +67,8 @@ void leer_fichero(Gestion* gestion)
 
 
 int main() {
+    SetConsoleOutputCP(CP_UTF8);
+    setvbuf(stdout, nullptr, 0, 0);
 
     /*ABB* arbol = new ABB();
 
@@ -140,7 +142,7 @@ int main() {
             Pedido* p3 = new Pedido ("Martillo",    "Julio",    "Calle Estrella 17",Tipo_cliente::NVIP,     "780678345667");
             Pedido* p4 = new Pedido ("Mesa",        "Div9y",    "Calle Sol 71",     Tipo_cliente::NR,       "780453745667");
             Pedido* p5 = new Pedido ("PS5",         "Padilla",  "Calle Luna 2",     Tipo_cliente::VIP,      "780044545667");
-            Pedido* p6 = new Pedido ("XBOX",        "Gsus",     "Calle Espacio 3",  Tipo_cliente::VIP,      "780013456676");
+            Pedido* p6 = new Pedido ("Ordenador Portatil",        "Gsus",     "Calle Espacio 3",  Tipo_cliente::VIP,      "780013456676");
             Pedido* p7 = new Pedido ("Martillo",    "divy",     "Calle Grande 7",   Tipo_cliente::VIP,      "780678345667");
             Pedido* p8 = new Pedido ("PC",          "Hugo",     "Calle Blanca 9",   Tipo_cliente::NR,       "780453745667");
             Pedido* p9 = new Pedido ("Pala",        "Alex",     "Calle Satelite 8", Tipo_cliente::VIP,      "780044545667");
