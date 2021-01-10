@@ -138,7 +138,7 @@ int main() {
         default:
             ///se instancias varios pedidos
             Pedido* p1 = new Pedido ("Martillo",    "Andres",   "Jose Zorrilla 7",  Tipo_cliente::NVIP,     "780044545667");
-            Pedido* p2 = new Pedido ("Libro",       "Carlos",   "Perez Galdos 12",  Tipo_cliente::NR,       "780013456674");
+            Pedido* p2 = new Pedido ("PC",    "Andres",   "Jose Zorrilla 7",  Tipo_cliente::NVIP,     "780044545667");
             Pedido* p3 = new Pedido ("Martillo",    "Julio",    "Calle Estrella 17",Tipo_cliente::NVIP,     "780678345667");
             Pedido* p4 = new Pedido ("Mesa",        "Div9y",    "Calle Sol 71",     Tipo_cliente::NR,       "780453745667");
             Pedido* p5 = new Pedido ("PS5",         "Padilla",  "Calle Luna 2",     Tipo_cliente::VIP,      "780044545667");

@@ -5,6 +5,18 @@
 #include <stdio.h>
 #include <windows.h>
 
+#define AZUL 1
+#define VERDE 2
+#define AGUAMARINA 3
+#define ROJO 4
+#define PURPURA 5
+#define AMARILLO 6
+#define BLANCO 7
+#define AZUL_CLARO 9
+#define AGUAMARINA_CLARO 11
+#define ROJO_CLARO 12
+#define PURPURA_CLARO 13
+#define AMARILLO_CLARO 14
 
 using namespace std;
 
@@ -220,84 +232,85 @@ void Gestion::color(int x){
 }
 
 void Gestion::mostrar_datos() { ///muestra todos los datos
-    color(6);
+    color(AMARILLO);
     cout << endl << "----<COLA DE NO REGISTRADO>----";
-    color(14);
+    color(AMARILLO_CLARO);
     c_no_registrados->mostrar_desc_cola();
-    color(5);
+    color(PURPURA);
     cout << endl << "----<COLA DE REGISTRADO>----";
-    color(13);
+    color(PURPURA_CLARO);
     c_registrados->mostrar_desc_cola();
-    color(1);
+    color(AZUL);
     cout << endl << "----<LISTA DE LISTO PARA ENVIAR 1>----";
-    color(9);
+    color(AZUL_CLARO);
     l_para_enviar1->mostrar_lista_desc();
-    color(3);
+    color(AGUAMARINA);
     cout << endl << "----<LISTA DE LISTO PARA ENVIAR 2>----";
-    color(11);
+    color(AGUAMARINA_CLARO);
     l_para_enviar2->mostrar_lista_desc();
-    color(4);
+    color(ROJO);
     cout << endl << "----<PILA DE ERRONEOS>----";
-    color(12);
+    color(ROJO_CLARO);
     p_erroneos->mostrar_desc_pila();
-    color(7);
+    color(BLANCO);
 }
 
 void Gestion::mensaje(Tipo_mensaje m) {
     switch(m){
     case INICIAL:
-        cout
-        << "\n\n\n############ Asi se encuentra la"
-        << " estructura al inicio de la ejecucion ############"
-        << endl;
+        cout << endl << endl << endl;
+        cout << " ╔════════════════════════════════════════════════════════╗" << endl;
+        cout << " ║Asi se encuentra la estructura al inicio de la ejecucion║" << endl;
+        cout << " ╚════════════════════════════════════════════════════════╝" << endl;
         break;
     case PRIMEROS_PEDIDOS:
-        cout
-        << "############ Introducimos los primeros 4"
-        << " pedidos a la lista de pedidos para enviar ############"
-        << endl;
+        cout << " ╔═════════════════════════════════════════════════════════════════════╗" << endl;
+        cout << " ║Introducimos los primeros 4 pedidos a la lista de pedidos para enviar║" << endl;
+        cout << " ╚═════════════════════════════════════════════════════════════════════╝" << endl;
         break;
     case COMIENZA_EL_PROCESO:
-        cout
-        << "############ A partir de aqui se van introduciendo los pedido a la lista"
-        << " de listos para enviar segun los pedidos van estando preparados ############"
-        << endl << endl;
+        cout << " ╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗" << endl;
+        cout << " ║A partir de aqui se van introduciendo los pedido a la lista de listos para enviar segun los pedidos van estando preparados║" << endl;
+        cout << " ╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝" << endl;
+        cout << endl;
         break;
     case TODOS_ERRONEOS:
-        cout << "Los pedidos son todos erroneos, enviando a la lista el primero de la pila de erroneos" << endl;
+        cout << " ╔═════════════════════════════════════════════════════════════════════════════════════╗" << endl;
+        cout << " ║Los pedidos son todos erroneos, enviando a la lista el primero de la pila de erroneos║" << endl;
+        cout << " ╚═════════════════════════════════════════════════════════════════════════════════════╝" << endl;
         break;
     }
 }
 void Gestion::cabecera(int tiempo_general) {
-    cout << "╔══════════════╦══════════════╗" << endl;
-    cout << "║    LISTA 1   ║    LISTA 2   ║" << endl;
+    cout << " ╔══════════════╦══════════════╗" << endl;
+    cout << " ║    LISTA 1   ║    LISTA 2   ║" << endl;
     if (tiempo_general % 2 == 1)
-        cout << "╠══════════════╩══════════════╣" << endl;
+        cout << " ╠══════════════╩══════════════╣" << endl;
     else
-        cout << "╠══════════════╬══════════════╣" << endl;
+        cout << " ╠══════════════╬══════════════╣" << endl;
 }
 
 void Gestion::pedido_insertado(Pedido* p) {
-    cout << "║      PEDIDO INSERTADO       ║" << "→ Minuto " << minutos_gestion << endl;
-    cout << "║      " << p->get_descripcion_articulo();
+    cout << " ║      PEDIDO INSERTADO       ║" << "→ Minuto " << minutos_gestion << endl;
+    cout << " ║      " << p->get_descripcion_articulo();
     //const char* str = (const char*)p->get_descripcion_articulo();
     for (int i=0; i<22-p->get_descripcion_articulo().length()+1; i++) {
         cout << " ";
     }
     cout << "║" << endl;
     if (lista_selector)
-        cout << "╠═════════════════════════════╣" << endl;
+        cout << " ╠═════════════════════════════╣" << endl;
     else
-        cout << "╠══════════════╦══════════════╣" << endl;
+        cout << " ╠══════════════╦══════════════╣" << endl;
 }
 
 void Gestion::progreso(int tiempo_general, int minutos1, int minutos2, Pedido* p1, Pedido* p2) {
     if(minutos1 == 0)
-        cout << "║    ENVIADO   ";
+        cout << " ║    ENVIADO   ";
     else if (!enviando1 && l_para_enviar1->es_vacia())
-        cout << "║  ----------  ";
+        cout << " ║  ----------  ";
     else if(float(minutos1) / p1->get_tiempo() != 1)
-        cout << "║    "<< int(float(minutos1)/p1->get_tiempo() * 100) << "%       ";
+        cout << " ║    "<< int(float(minutos1)/p1->get_tiempo() * 100) << "%       ";
 
     if (minutos2 == 0)
         cout << "║    ENVIADO   ║" << "→ Minuto " << minutos_gestion << endl;
@@ -306,9 +319,9 @@ void Gestion::progreso(int tiempo_general, int minutos1, int minutos2, Pedido* p
     else if (float(minutos2) / p2->get_tiempo() != 1)
         cout << "║    "<< int(float(minutos2)/p2->get_tiempo() * 100) << "%       ║" << "→ Minuto " << minutos_gestion << endl;
     if (tiempo_general % 2 == 1)
-        cout << "╠══════════════╩══════════════╣" << endl;
+        cout << " ╠══════════════╩══════════════╣" << endl;
     else
-        cout << "╠══════════════╬══════════════╣" << endl;
+        cout << " ╠══════════════╬══════════════╣" << endl;
 }
 
 void Gestion::simula_tiempo() ///funcion principal del programa, establece el orden en que se invocan las funciones y simula el paso del tiempo
@@ -440,7 +453,7 @@ void Gestion::opciones_arbol()
             case 1:
                 {
                 string nombre;
-                cout << "Escriba el nombre del cliente que quiere buscar: " << endl;
+                cout << "Escriba el nombre del cliente que quiere buscar: " << endl << " → ";
                 cin.ignore();
                 getline(cin, nombre);
                 a_clientes->buscar_cliente(nombre);
@@ -453,17 +466,20 @@ void Gestion::opciones_arbol()
                 correcto = false;
                 break;
             case 3:
-                cout << "La altura del arbol es: " << a_clientes->altura() << endl << endl;
-                a_clientes->altura();
+                color(2);
+                cout << " → La altura del arbol es: " << a_clientes->altura() << endl << endl;
+                color(7);
                 correcto = false;
                 break;
             case 4:
                 {
                 string descripcion;
-                cout << "Escriba la descripcion del producto que quiere buscar: " << endl;
+                cout << "Escriba la descripcion del producto que quiere buscar: " << endl << " → ";
                 cin.ignore();
                 getline(cin, descripcion);
-                cout << "Se han vendido " << a_clientes->unidades_producto(descripcion) << " unidades." << endl << endl;
+                color(2);
+                cout << " → Se han vendido " << a_clientes->unidades_producto(descripcion) << " unidades." << endl << endl;
+                color(7);
                 correcto = false;
                 break;
                 }

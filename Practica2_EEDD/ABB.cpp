@@ -1,6 +1,11 @@
 #include "ABB.h"
 #include "Nodo_a_bin.h"
+#include <windows.h>
 #include<iostream>
+
+#define VERDE 2
+#define BLANCO 7
+
 using namespace std;
 ABB::ABB() {
     //pedido = NULL;
@@ -10,6 +15,10 @@ ABB::ABB() {
 ABB::~ABB()
 {
     delete raiz;
+}
+
+void ABB::color(int x){
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),x);
 }
 
 bool ABB::es_menor(string s1, string s2)
@@ -70,16 +79,18 @@ void ABB::buscar_cliente(string cliente)
         return;
     else
        if (cliente == raiz->nombre) {
-            cout << "========================================================" << endl;
-            cout << "Nombre del cliente: " << raiz->nombre << endl;
-            cout << "Tipo del cliente: " << raiz->tipo_cliente << endl;
-            cout << "Tarjeta de credito: " << raiz->tarjeta << endl;
+            color(VERDE);
+            cout << " ╔════════════════════════════════════════════════════════════╗" << endl;
+            cout << " ║Nombre del cliente: " << raiz->nombre << endl;
+            cout << " ║Tipo del cliente: " << raiz->tipo_cliente << endl;
+            cout << " ║Tarjeta de credito: " << raiz->tarjeta << endl << " ║";
             raiz->lista_pedidos->mostrar_lista_datos_pedido();
-            cout << "========================================================" << endl;
+            cout << " \n ╚════════════════════════════════════════════════════════════╝" << endl;
             raiz->arbol_derecho->buscar_cliente(cliente);
             raiz->arbol_izquierdo->buscar_cliente(cliente);
+            color(BLANCO);
        }
-       else if (cliente <= raiz->nombre) {
+       else if (es_menor(cliente, raiz->nombre)) {
             raiz->arbol_izquierdo->buscar_cliente(cliente);
        }
        else {
@@ -92,14 +103,16 @@ void ABB::mostrar_datos_preorden()
     if (raiz == nullptr)
         return;
     else {
-        cout << "========================================================" << endl;
-        cout << "Nombre del cliente: " << raiz->nombre << endl;
-        cout << "Tipo del cliente: " << raiz->tipo_cliente << endl;
-        cout << "Tarjeta de credito: " << raiz->tarjeta << endl;
+        color(VERDE);
+        cout << " ╔════════════════════════════════════════════════════════════╗" << endl;
+        cout << " ║Nombre del cliente: " << raiz->nombre << endl;
+        cout << " ║Tipo del cliente: " << raiz->tipo_cliente << endl;
+        cout << " ║Tarjeta de credito: " << raiz->tarjeta << endl << " ║";
         raiz->lista_pedidos->mostrar_lista_datos_pedido();
-        cout << "========================================================" << endl;
+        cout << " \n ╚════════════════════════════════════════════════════════════╝" << endl;
         raiz->arbol_izquierdo->mostrar_datos_preorden();
         raiz->arbol_derecho->mostrar_datos_preorden();
+        color(BLANCO);
     }
 
 }
@@ -125,13 +138,18 @@ int ABB::unidades_producto(string descripcion)
     if (raiz == nullptr)
         return 0;
     else {
-        Lista* lp = new Lista();
-        lp = raiz->lista_pedidos;
+        Lista* lp = raiz->lista_pedidos;
+        Lista* aux = new Lista();
         contador = 0;
         while (!lp->es_vacia()) {
             if(lp->prim()->get_descripcion_articulo() == descripcion)
                 contador++;
+            aux->add_der(lp->prim());
             lp->resto();
+        }
+        while (!aux->es_vacia()) {
+            lp->add_der(aux->prim());
+            aux->resto();
         }
         return contador + raiz->arbol_izquierdo->unidades_producto(descripcion) + raiz->arbol_derecho->unidades_producto(descripcion);
     }
@@ -139,19 +157,20 @@ int ABB::unidades_producto(string descripcion)
 }
 void ABB::mostrar_datos_VIP()
 {
-    //Para recorrerlos alfab�ticamente se recorre el arbol en inorden
+    //Para recorrerlos alfabéticamente se recorre el arbol en inorden
     if (raiz == nullptr)
         return;
     else {
         raiz->arbol_izquierdo->mostrar_datos_VIP();
-        //cout << "EL TIPO DE CLIENTE ES " << raiz->tipo_cliente << endl;
         if (raiz->tipo_cliente == "VIP") {
-            cout << "========================================================" << endl;
-            cout << "Nombre del cliente: " << raiz->nombre << endl;
-            cout << "Tipo del cliente: " << raiz->tipo_cliente << endl;
-            cout << "Tarjeta de credito: " << raiz->tarjeta << endl;
+            color(VERDE);
+            cout << " ╔════════════════════════════════════════════════════════════╗" << endl;
+            cout << " ║Nombre del cliente: " << raiz->nombre << endl;
+            cout << " ║Tipo del cliente: " << raiz->tipo_cliente << endl;
+            cout << " ║Tarjeta de credito: " << raiz->tarjeta << endl << " ║";
             raiz->lista_pedidos->mostrar_lista_datos_pedido();
-            cout << "========================================================" << endl;
+            cout << " \n ╚════════════════════════════════════════════════════════════╝" << endl;
+            color(BLANCO);
         }
         raiz->arbol_derecho->mostrar_datos_VIP();
     }

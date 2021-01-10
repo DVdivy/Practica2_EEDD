@@ -179,10 +179,9 @@ void Lista::mostrar_lista_datos_pedido()
 		Nodo* p = new Nodo();
 		p = primero;
 		while (p != nullptr) {
-			cout << endl <<"Pedido " << c << ": " << p->pedido->mostrar_pedido_datos_pedido() << endl;
+			cout << endl <<" ║Pedido " << c << ": " << p->pedido->mostrar_pedido_datos_pedido();
 			p = p->sig;
 			c++;
 		}
-		cout << endl;
 	}
 }
