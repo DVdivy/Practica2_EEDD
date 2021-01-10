@@ -30,7 +30,7 @@
 1609695312 c:\users\david\documents\github\practica2_eedd\practica2_eedd\pila.h
 	"Nodo.h"
 
-1610287353 source:c:\users\david\documents\github\practica2_eedd\practica2_eedd\gestion.cpp
+1610315571 source:c:\users\david\documents\github\practica2_eedd\practica2_eedd\gestion.cpp
 	"Gestion.h"
 	<iostream>
 	<conio.h>
@@ -45,7 +45,7 @@
 	"Pedido.h"
 	"ABB.h"
 
-1610286809 source:c:\users\david\documents\github\practica2_eedd\practica2_eedd\pedido.cpp
+1610288983 source:c:\users\david\documents\github\practica2_eedd\practica2_eedd\pedido.cpp
 	"Pedido.h"
 	<stdlib.h>
 	<time.h>
@@ -54,20 +54,20 @@
 	<string.h>
 	<windows.h>
 
-1610286491 source:c:\users\david\documents\github\practica2_eedd\practica2_eedd\main.cpp
+1610294319 source:c:\users\david\documents\github\practica2_eedd\practica2_eedd\main.cpp
 	"Gestion.h"
 	"ABB.h"
 	<windows.h>
 	<time.h>
 	<fstream>
 
-1610288181 source:c:\users\david\documents\github\practica2_eedd\practica2_eedd\abb.cpp
+1610315462 source:c:\users\david\documents\github\practica2_eedd\practica2_eedd\abb.cpp
 	"ABB.h"
 	"Nodo_a_bin.h"
 	<windows.h>
 	<iostream>
 
-1610288164 c:\users\david\documents\github\practica2_eedd\practica2_eedd\abb.h
+1610315563 c:\users\david\documents\github\practica2_eedd\practica2_eedd\abb.h
 	<stdlib.h>
 	"Pedido.h"
 

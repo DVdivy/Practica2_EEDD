@@ -17,7 +17,7 @@ public:
     ABB();
     ~ABB();
     void insertar(Pedido* p);
-    void mostrar_arbol(int);
+    string mostrar_arbol(int a, int b, int* c);
 
     void buscar_cliente(string cliente);
     void mostrar_datos_preorden();

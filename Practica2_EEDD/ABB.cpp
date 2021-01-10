@@ -59,18 +59,43 @@ void ABB::insertar(Pedido* p)
     }
 }
 
-void ABB::mostrar_arbol(int contador = 0)
+string ABB::mostrar_arbol(int contador, int flag, int* slash)
 {
-    if (raiz == nullptr)
-        return;
-    else {
-        raiz->arbol_derecho->mostrar_arbol(contador + 1);
-        for (int i = 0; i < contador; i++) {
-            cout << "\t\t";
+    string devolver = "";
+    if (raiz != nullptr){
+        if (raiz->arbol_derecho != nullptr){
+            int flag_nueva = 2;
+            int slash_nuevo[contador];
+            for (int i = 0; i < contador - 1; i++){
+                slash_nuevo[i] = slash[i];
+            }
+            slash_nuevo[contador - 1] = (flag_nueva != flag) ? 1 : 0;
+
+            devolver += raiz->arbol_derecho->mostrar_arbol(contador + 1, flag_nueva, slash_nuevo);
         }
-        cout << raiz->nombre << endl << endl;
-        raiz->arbol_izquierdo->mostrar_arbol(contador + 1);
+        for (int i = 0; i < contador; i++){
+            if (i == contador - 1){
+                devolver += "    " + (string)((flag == 1) ? "╚" : "╔") + "══>";
+            }
+            else if (slash[i] == 1){
+                devolver += "    ║    ";
+            }
+            else{
+                devolver += "         ";
+            }
+        }
+        devolver += raiz->nombre + "\n";
+        if (raiz->arbol_izquierdo != nullptr){
+            int flag_nueva = 1;
+            int slash_nuevo[contador - 1];
+            for (int i = 0; i < contador - 1; i++){
+                slash_nuevo[i] = slash[i];
+            }
+            slash_nuevo[contador - 1] = (flag_nueva != flag) ? 1 : 0;
+            devolver += raiz->arbol_izquierdo->mostrar_arbol(contador + 1, flag_nueva, slash_nuevo);
+        }
     }
+    return devolver;
 }
 
 void ABB::buscar_cliente(string cliente)

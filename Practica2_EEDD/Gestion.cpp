@@ -412,7 +412,8 @@ void Gestion::simula_tiempo() ///funcion principal del programa, establece el or
 
         }
     }
-    a_clientes->mostrar_arbol(0);
+    int* a;
+    cout << a_clientes->mostrar_arbol(0, 0, a);
     opciones_arbol();
 }
 
