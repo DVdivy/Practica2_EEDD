@@ -29,8 +29,7 @@ bool ABB::es_menor(string s1, string s2)
     for (int i=0; i<s2.length(); i++) {
         s2[i] = toupper(s2[i]);
     }
-    if (s1 <= s2) return true;
-    else return false;
+    return (s1 <= s2);
 }
 
 void ABB::insertar(Pedido* p)

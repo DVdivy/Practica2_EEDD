@@ -305,19 +305,28 @@ void Gestion::pedido_insertado(Pedido* p) {
 }
 
 void Gestion::progreso(int tiempo_general, int minutos1, int minutos2, Pedido* p1, Pedido* p2) {
-    if(minutos1 == 0)
-        cout << " ║    ENVIADO   ";
+    if(minutos1 == 0) {
+        cout << " ║    ";
+        color(VERDE);
+        cout << "ENVIADO   ";
+        color(BLANCO);
+    }
     else if (!enviando1 && l_para_enviar1->es_vacia())
         cout << " ║  ----------  ";
     else if(float(minutos1) / p1->get_tiempo() != 1)
-        cout << " ║    "<< int(float(minutos1)/p1->get_tiempo() * 100) << "%       ";
+        cout << " ║      "<< int(float(minutos1)/p1->get_tiempo() * 100) << "%     ";
 
-    if (minutos2 == 0)
-        cout << "║    ENVIADO   ║" << "→ Minuto " << minutos_gestion << endl;
+    if (minutos2 == 0) {
+        cout << "║    ";
+        color(VERDE);
+        cout << "ENVIADO   ";
+        color(BLANCO);
+        cout << "║→ Minuto " << minutos_gestion << endl;
+    }
     else if (!enviando2 && l_para_enviar2->es_vacia())
         cout << "║  ----------  ║" << "→ Minuto " << minutos_gestion << endl;
     else if (float(minutos2) / p2->get_tiempo() != 1)
-        cout << "║    "<< int(float(minutos2)/p2->get_tiempo() * 100) << "%       ║" << "→ Minuto " << minutos_gestion << endl;
+        cout << "║      "<< int(float(minutos2)/p2->get_tiempo() * 100) << "%     ║" << "→ Minuto " << minutos_gestion << endl;
     if (tiempo_general % 2 == 1)
         cout << " ╠══════════════╩══════════════╣" << endl;
     else
@@ -413,7 +422,7 @@ void Gestion::simula_tiempo() ///funcion principal del programa, establece el or
         }
     }
     int* a;
-    cout << a_clientes->mostrar_arbol(0, 0, a);
+    cout << a_clientes->mostrar_arbol(0, 0, a) << endl;
     opciones_arbol();
 }
 

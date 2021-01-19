@@ -1,9 +1,26 @@
-Raqueta//Pedro//Calle Constelacion 32//NVIP//123345867812//6
-Termometro//Miriam//Calle Noche 2//NR//235956712257//9
-PCR//Hugo//Calle Dia 4//VIP//837582294753//1
-Teclado//Fernando//Calle Esperanza 7//VIP//926582648592//3
-Pantalla//Teresa//Calle Ilusion 23//NR//839571937592//9
-Altavoz//Francisco//Calle Suspenso 21//VIP//834957398530//5
-Auriculares//Eva//Calle Aprobado 12//VIP//759375837594//8
-Estuche//Antonio//Calle Suficiente 3//NR//859235810384//6
-Lampara//Godofredo//Calle Notable 6//NVIP//938573957348//2
+Mac//MMM Lpez//Calle Luna 7//NR//780044545667//2
+Dell 2021//LLL Lpez//Calle Luna 7//VIP//780044545667//3
+Dell 2020//PP GIL//Calle Luna 7//VIP//780044545667//3
+Nokia 1212//JJ Gil//Calle Luna 7//VIP//780044545667//3
+Iphone7//MMM Lpez//Calle Luna 7//NR//780044545667//2
+EBook//CCC Prez//Calle Luna 7//NVIP//78001345667//4
+Taladro//CCC Lpez//Calle Estrella 7//NVIP//780678345667//7
+Mesa comedor//JJJ Lpez//Calle Sol 7//NR//780453745667//8
+Iphone7//LLL Lpez//Calle Luna 7//NR//780044545667//2
+Kindle//CCC Lpez//Calle Estrella 7//NR//780678345667//5
+Kindle//BBB Lpez//Calle Luna 7//NR//780455745667//5
+Nokia 1212//EEE Gil//Calle Luna 7//VIP//780044545667//3
+Lenovo//LLL Lpez//Calle Luna 7//VIP//780044545667//6
+Kindle//NNN Lpez//Calle Luna 7//NR//780044545667//2
+Nokia 1212//FF Gil//Calle Luna 7//VIP//780044545667//3
+Ipad2//AAA GIL//Calle Luna 7//NR//780044545667//2
+Taladro//QQ Lpez//Calle Estrella 7//NVIP//780678345667//4
+Lenovo//ZZZ Lpez//Calle Estrella 7//NVIP//780678345667//4
+Taladro//ZZZ Lpez//Calle Estrella 7//NVIP//780678345667//2
+Axus//LLL Lpez//Calle Luna 7//NR//780044545667//5
+Dell 2021//PP GIL//Calle Luna 7//VIP//780044545667//3
+Nokia 1212//LLL Lpez//Calle Luna 7//VIP//780044545667//3
+Iphone9//NNN Lpez//Calle Luna 7//NR//780044545667//2
+Iphone8//PP GIL//Calle Luna 7//NR//780044545667//3
+Iphone9//LLL Lpez//Calle Luna 7//NR//780044545667//2
+Nokia 1212//JJ Gil//Calle Luna 7//VIP//780044545667//3
